@@ -2,17 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
-  height: 30px;
+  height: 70px; // Adjusted for better visibility and spacing
   background: linear-gradient(to right, #B4E8EF, #78D5E3, #080034);
   color: #fff;
-  padding: 20px;
+  padding: 0 20px; // Adjust padding for content alignment
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed; /* Fixed position */
-  top: 0; /* Position at the top */
-  width: 100%; /* Full width */
-  z-index: 1000; /* Ensure it appears above other elements */
+  position: fixed;
+  top: 0;
+  left: 0; // Ensure the header starts from the very left edge
+  width: 100%; // Ensure the header takes the full width
+  z-index: 1000; // Keep it above other content
 `;
 
 const Logo = styled.div`
