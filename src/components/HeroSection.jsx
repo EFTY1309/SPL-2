@@ -25,7 +25,9 @@ function HeroSection() {
       <Image className="mySlides" src="/public/images/img_1.jpg" display={index === 0 ? 'block' : 'none'} />
       <Image className="mySlides" src="/public/images/img_2.jpg" display={index === 1 ? 'block' : 'none'} />
       <Image className="mySlides" src="/public/images/img_3.jpg" display={index === 2 ? 'block' : 'none'} />
+      <h1>Rafid is a good boy...</h1>
     </CarouselContainer>
+    
   );
 }
 
