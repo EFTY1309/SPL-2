@@ -1,9 +1,9 @@
 // App.js
 import React from 'react';
 import styled from 'styled-components';
-import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import Footer from './components/Footer';
+import Header from './components/Homepage/Header';
+import HeroSection from './components/Homepage/HeroSection';
+import Footer from './components/Homepage/Footer';
 
 const AppContainer = styled.div`
   font-family: "Roboto", sans-serif;
