@@ -1,0 +1,14 @@
+/* HeroSection.css */
+.carousel-container {
+    max-width: 500px;
+  }
+  
+  .my-slide {
+    width: 100%;
+    display: none;
+  }
+  
+  .active {
+    display: block;
+  }
+  
