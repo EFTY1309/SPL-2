@@ -1,14 +1,72 @@
 /* HeroSection.css */
-.carousel-container {
-    max-width: 500px;
-  }
-  
-  .my-slide {
-    width: 100%;
-    display: none;
-  }
-  
-  .active {
-    display: block;
-  }
-  
+.hero-section-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 540px;
+  margin-top: 80px;
+  margin-bottom: 35px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.left-box {
+  flex: 1; /* flex-grow flex-shrink flex-basis */
+  height: 100%;
+  background-color: #E1F5F8;
+  border-radius: 10px;
+  border: 1px solid #78D5E3;
+}
+
+
+.right-boxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* flex: 0 0 25%; */
+  height: 100%;
+  gap: 10px;
+}
+
+.top-right-box,
+.bottom-right-box {
+  flex: 1;
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.top-right-box {
+  background-image: linear-gradient(#CF331C, #080034);
+}
+
+.bottom-right-box {
+  background-color: #080034;
+}
+
+.img1-box, .img2-box {
+  background-color: #E1F5F8;
+  width: 160px;
+  height: 160px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.img1-box {
+  background-image: url(../../../public/images/VC_Sir_Pic.jpg); 
+}
+
+.img2-box {
+  background-image: url(../../../public/images/Shahjahan_Sir_Pic.jpeg); 
+}
+
+.vc-text, .director-text{
+  color: #FFFFFF;
+  margin: 10px;
+
+}
