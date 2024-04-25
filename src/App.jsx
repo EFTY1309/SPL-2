@@ -1,9 +1,7 @@
 // App.js
 import React from 'react';
 import styled from 'styled-components';
-import Header from './components/Homepage/Header';
-import HeroSection from './components/Homepage/HeroSection';
-import Footer from './components/Homepage/Footer';
+import Homepage from './pages/Homepage';
 
 const AppContainer = styled.div`
   font-family: "Roboto", sans-serif;
@@ -12,9 +10,7 @@ const AppContainer = styled.div`
 function App() {
   return (
     <AppContainer>
-      <Header />
-      <HeroSection />
-      <Footer />
+      <Homepage />
     </AppContainer>
   );
 }

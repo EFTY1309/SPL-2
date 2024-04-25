@@ -1,0 +1,27 @@
+/* Footer.css */
+.footer {
+  height: 250px;
+  background-color: #162C4D;
+  color: #FFFFFF;
+  margin-top: 35px;
+  padding: 20 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+  
+  .footer-links {
+    margin-top: 20px;
+  }
+  
+  .link {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .link:hover {
+    color: #005ce6;
+  }
+  
