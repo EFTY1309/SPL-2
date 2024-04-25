@@ -25,6 +25,23 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      <div className="hero-section-2">
+
+      </div>
+
+      <div className="hero-section-3">
+
+      </div>
+
+      <div className="hero-section-4">
+
+      </div>
+
+      <div className="hero-section-5">
+
+      </div>
+
     </div>
   );
 };

@@ -70,3 +70,19 @@
   margin: 10px;
 
 }
+
+.hero-section-2, .hero-section-3, .hero-section-4, .hero-section-5 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 540px;
+  width: 100%;
+  margin-bottom: 35px;
+  background-color: #E1F5F8;
+  border-radius: 10px;
+}
+
+.hero-section-3 {
+  height: 375px;
+}
+

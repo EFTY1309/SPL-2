@@ -1,9 +1,13 @@
 /* Footer.css */
 .footer {
-    background-color: #10567A;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+  height: 250px;
+  background-color: #162C4D;
+  color: #FFFFFF;
+  margin-top: 35px;
+  padding: 20 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   }
   
   .footer-links {
