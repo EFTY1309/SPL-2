@@ -9,9 +9,10 @@
 body {
   margin-left: 80px;
   margin-right: 80px;
-  font-family: "Roboto", sans-serif;
-  /* Scrolling background image */
-  background-image: url('/public/images/BG.png');
+  font-family: "Poppins", sans-serif;
+
+  /* background-image: url('/public/images/BG.png'); */
+  background-image: linear-gradient(#78D5E3, #080034);
   background-size: cover;
   background-attachment: scroll; /* Scroll background image while scrolling */
 }

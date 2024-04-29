@@ -27,19 +27,33 @@ const HeroSection = () => {
       </div>
 
       <div className="hero-section-2">
-
+        <h1>About us</h1>
+        <div className="boxes">
+          <div className="transparent-box mission">
+            <h2>Mission</h2>
+            <p>Our mission statement goes here...</p>
+          </div>
+          <div className="transparent-box vision">
+            <h2>Vision</h2>
+            <p>Our vision statement goes here...</p>
+          </div>
+        </div>
+        <img src="../../../public/images/DU_swimming_pool4.jpg" alt="Hero Image" />
       </div>
 
-      <div className="hero-section-3">
 
+      <div className="hero-section-3">
+          <img src="../../../public/images/DU_swimming_pool2.jpg" />
       </div>
 
       <div className="hero-section-4">
-
+          <h1>Courses</h1>
+          <img src="../../../public/images/DU_swimming_pool.jpg" />
       </div>
 
       <div className="hero-section-5">
-
+          <h1>Contact us</h1>
+          <img src="../../../public/images/DU_swimming_pool3.jpg" />
       </div>
 
     </div>
