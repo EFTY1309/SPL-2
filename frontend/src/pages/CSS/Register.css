@@ -1,0 +1,17 @@
+.registration-button{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center;
+    box-sizing: border-box;
+
+}
+.registration-button button{
+    margin: 10px;
+    height: 40px;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
