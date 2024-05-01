@@ -116,18 +116,18 @@
 .hero-section-2 .boxes {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: absolute;
-  top: 50%; /* Position boxes at the center */
-  transform: translateY(-50%); /* Adjust vertical position */
-  width: calc(100% - 14px);
+  
 }
 
 .hero-section-2 .transparent-box {
   flex: 1;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 20px;
   border-radius: 8px;
-  margin: 0 7px; /* Adjust margin as needed */
+  margin: 0 7px;
+  align-items: center;
 }
 
 .hero-section-2 .transparent-box h2 {
@@ -137,5 +137,6 @@
 
 .hero-section-2 .transparent-box p {
   font-size: 16px;
-  color: #555;
+  color: #080034;
+  font-weight: 600;
 }

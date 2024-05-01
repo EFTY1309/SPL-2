@@ -10,12 +10,10 @@
         padding-top: 40px;
         /* background: #162C4D;
         opacity: .6; */
-          position: relative;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-      
-        
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 100%; 
     }
     .container{
         width: 100%;
