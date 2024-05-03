@@ -31,11 +31,13 @@ const HeroSection = () => {
         <div className="boxes">
           <div className="transparent-box mission">
             <h2>Mission</h2>
-            <p>Our mission statement goes here...</p>
+            <p>Nuestra misión en Aqua Piscinas CR es ofrecer soluciones de construcción y remodelación de piscinas de la más alta calidad en La Fortuna de San Carlos, Costa Rica. Nos esforzamos por brindar a nuestros clientes servicios excepcionales, utilizando técnicas y materiales innovadores, para crear espacios acuáticos únicos y duraderos. Trabajamos en estrecha colaboración con nuestros clientes para. Trabajamos en estrecha colaboración con nuestros clientes para. Trabajamos en estrecha colaboración con nuestros clientes para. Nos esforzamos por brindar a nuestros clientes servicios excepcionales, utilizando técnicas y materiales innovadores, para crear espacios acuáticos únicos y duraderos.
+            </p>
           </div>
           <div className="transparent-box vision">
             <h2>Vision</h2>
-            <p>Our vision statement goes here...</p>
+            <p>Nuestra misión en Aqua Piscinas CR es ofrecer soluciones de construcción y remodelación de piscinas de la más alta calidad en La Fortuna de San Carlos, Costa Rica. Nos esforzamos por brindar a nuestros clientes servicios excepcionales, utilizando técnicas y materiales innovadores, para crear espacios acuáticos únicos y duraderos. Trabajamos en estrecha colaboración con nuestros clientes para. Trabajamos en estrecha colaboración con nuestros clientes para. Trabajamos en estrecha colaboración con nuestros clientes para. Nos esforzamos por brindar a nuestros clientes servicios excepcionales, utilizando técnicas y materiales innovadores, para crear espacios acuáticos únicos y duraderos.
+            </p>
           </div>
         </div>
         <img src="../../../public/images/DU_swimming_pool4.jpg" alt="Hero Image" />
@@ -44,6 +46,10 @@ const HeroSection = () => {
 
       <div className="hero-section-3">
           <img src="../../../public/images/DU_swimming_pool2.jpg" />
+          <div className="glass-box">
+            <h3>Dive into our gallery and explore the splendor of aquatic moments captured in time.</h3>
+          </div>
+
       </div>
 
       <div className="hero-section-4">

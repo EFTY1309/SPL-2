@@ -118,12 +118,14 @@
   justify-content: space-between;
   align-items: center;
   position: absolute;
+  height: calc(100% - 55px);
+  width: calc(100% - 250px);
   
 }
 
 .hero-section-2 .transparent-box {
   flex: 1;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
   padding: 20px;
   border-radius: 8px;
   margin: 0 7px;
@@ -131,7 +133,9 @@
 }
 
 .hero-section-2 .transparent-box h2 {
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #080034;
   margin-bottom: 10px;
 }
 
@@ -139,4 +143,11 @@
   font-size: 16px;
   color: #080034;
   font-weight: 600;
+}
+
+.glass-box {
+  flex: 1;
+  height: calc(100% - 250px);
+  width: calc(100% - 250px);
+  background-color: rgba(255, 255, 255, 0.6);;
 }
