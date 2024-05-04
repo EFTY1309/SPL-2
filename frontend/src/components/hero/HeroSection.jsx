@@ -50,7 +50,7 @@ const HeroSection = () => {
 
       <div className="hero-section-3">
         <div className="overlay">
-          <div className="left-box">
+          <div className="left-box-gallery">
             <button className="btn">Gallery</button>
           </div>
           <div className="glass-box">

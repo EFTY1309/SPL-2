@@ -182,12 +182,11 @@
   text-align: center;
 }
 
-.left-box {
+.left-box-gallery {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0);
-  box-shadow: none;
+  margin-left: 70px;
 }
 
 .btn {
@@ -203,7 +202,7 @@
 }
 
 .btn:hover {
-  background-color: #5E5E5E;
+  background-color: #78D5E3;
 }
 
 
