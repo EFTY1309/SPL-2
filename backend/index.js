@@ -46,12 +46,23 @@ const Users=mongoose.model('Users',{
     date:{
         type:Date,
         default:Date.now,
+    },
+    category:{
+        type:String,
+    },
+    dob: {
+        type: Date, // Date of Birth
+    },
+    registrationNumber:{
+        type:String,
     }
+
 })
 
 //creating endpoint for registering the user
 
 app.post('/register',async(req,res)=>{
+    console.log('Request body:', req.body);
     let check=await Users.findOne({email:req.body.email});
     if(check){
         return  res.status(400).json({success:false,errors:"existing user found with same email id"})
@@ -67,6 +78,9 @@ app.post('/register',async(req,res)=>{
         number:req.body.number,
         professionalPosition:req.body.professionalPosition,
         cartData:cart,
+        category:req.body.category,
+        dob:req.body.dob,
+        registrationNumber:req.body.registrationNumber,
     })
 
     await user.save();

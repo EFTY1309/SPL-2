@@ -1,0 +1,18 @@
+.butterfly {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 50px 0; /* Adjust as needed */
+    background-color: #e1f7f8;
+  }
+.butterfly-left-side{
+    margin-top: 10px;
+    height: 307px;
+    width: 750px;
+   
+}
+.butterfly-right-side img{
+  height: 500px;
+  width: 500px;
+}

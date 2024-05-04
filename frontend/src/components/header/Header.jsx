@@ -11,11 +11,11 @@ const Header = () => {
       </div>
       <nav className="navigation">
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Courses</li>
-          <li>Schedule</li>
-          <li>Contact</li>
+          <li><Link to="/home" style={{textDecoration:'none'}} >Home</Link></li>
+          <li><Link to="/about" style={{textDecoration:'none'}} >About</Link></li>
+          <li><Link to="/course" style={{textDecoration:'none'}} >Courses</Link></li>
+          <li><Link to="/schedule" style={{textDecoration:'none'}} >Schedule</Link></li>
+          <li><Link to="/contact" style={{textDecoration:'none'}} >Contact</Link></li>
         </ul>
       </nav>
       <div className="auth-buttons">
