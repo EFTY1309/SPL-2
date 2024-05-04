@@ -1,13 +1,12 @@
 import React from "react";
-import HeroSection from "../components/hero/HeroSection";
 import MainLayout from "../layout/MainLayout";
 
-const Homepage = () => {
+const Courses = () => {
   return (
     <MainLayout>
-      <HeroSection />
+        
     </MainLayout>
   );
 };
 
-export default Homepage;
+export default Courses;

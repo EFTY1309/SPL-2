@@ -1,72 +1,81 @@
 /* Header.css */
 .header {
-    height: 60px;
-    background: linear-gradient(to right, #B4E8EF, #78D5E3, #080034);
-    color: #5E5E5E;
-    padding: 0 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0; /* Set right to 0 to cover full width */
-    z-index: 1000;
-  }
+  height: 60px;
+  background: linear-gradient(to right, #b4e8ef, #78d5e3, #080034);
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; /* Set right to 0 to cover full width */
+  z-index: 1000;
+}
 
-  .logo img {
-    width: 146px;
-    height: 46px;
-    transition: transform 0.3s ease;
-  }
-  
-  .logo img:hover {
-    transform: scale(1.1);
-  }
-  
-  .navigation ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 28px;
-  }
-  
-  .navigation ul li {
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .navigation ul li:hover {
-    color: #080034;
-    transform: scale(1.2);
-  }
-  
-  .auth-buttons button {
-    height: 35px;
-    width: 80px;
-    background-color: #E1F5F8;
-    font-size: 14px;   
-    text-align: center;
-    color: #080034;
-    border: none;
-    border-radius: 10px;
-    padding: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-  }
-  
-  .auth-buttons button:hover {
-    background-color: #78D5E3;
-    color: #080034;
-    transform: scale(1.1);
-  }
+.logo img {
+  width: 146px;
+  height: 46px;
+  transition: transform 0.3s ease;
+}
 
-  .auth-buttons {
-    display: flex;
-    gap: 13px;
-  }
-  
+.logo img:hover {
+  transform: scale(1.1);
+}
+
+.navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 28px;
+}
+
+.navigation ul li{
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.navigation ul li a{ 
+  color: #5e5e5e;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.navigation ul li:hover {
+  transform: scale(1.2);
+}
+
+.navigation ul li a:hover {
+  color: #080034;
+  font-weight: 700;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 13px;
+}
+
+.auth-button {
+  display: inline-block;
+  height: 35px;
+  width: 80px;
+  background-color: #e1f5f8;
+  font-size: 14px;
+  text-align: center;
+  line-height: 35px;
+  color: #080034;
+  border: none;
+  border-radius: 10px;
+  padding: 0 8px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none; /* Add this */
+  transition: all 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #78d5e3;
+  color: #080034;
+  transform: scale(1.1);
+}

@@ -1,17 +1,11 @@
-// App.js
-import React from 'react';
-import styled from 'styled-components';
-import Homepage from './pages/Homepage';
-
-const AppContainer = styled.div`
-  font-family: "Roboto", sans-serif;
-`;
+import React from "react";
+import Homepage from "./pages/Homepage";
 
 function App() {
   return (
-    <AppContainer>
+    <>
       <Homepage />
-    </AppContainer>
+    </>
   );
 }
 

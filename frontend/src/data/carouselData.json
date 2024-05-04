@@ -1,20 +1,20 @@
 {
-    "slides": [
-      {
-        "src": "../../public/images/DU_swimming_pool.jpg",
-        "alt": "Image 1 for carousel"
-      },
-      {
-        "src": "../../public/images/DU_swimming_pool2.jpg",
-        "alt": "Image 2 for carousel"
-      },
-      {
-        "src": "../../public/images/DU_swimming_pool3.jpg",
-        "alt": "Image 3 for carousel"
-      },
-      {
-        "src": "../../public/images/DU_swimming_pool4.jpg",
-        "alt": "Image 4 for carousel"
-      }
-    ]
-  }
+  "slides": [
+    {
+      "src": "../../public/images/DU_swimming_pool.jpg",
+      "alt": "Image 1 for carousel"
+    },
+    {
+      "src": "../../public/images/DU_swimming_pool2.jpg",
+      "alt": "Image 2 for carousel"
+    },
+    {
+      "src": "../../public/images/DU_swimming_pool3.jpg",
+      "alt": "Image 3 for carousel"
+    },
+    {
+      "src": "../../public/images/DU_swimming_pool4.jpg",
+      "alt": "Image 4 for carousel"
+    }
+  ]
+}

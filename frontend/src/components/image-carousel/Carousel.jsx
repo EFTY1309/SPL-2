@@ -24,7 +24,11 @@ export const Carousel = ({ data }) => {
   return (
     <div className="carousel">
       <div className="du-logo-and-text">
-        <img src="../../../public/images/DU logo.png" alt="DU Logo" className="logo-du"/>
+        <img
+          src="../../../public/images/DU logo.png"
+          alt="DU Logo"
+          className="logo-du"
+        />
         <h1 className="DU-text">Dhaka University Swimming Pool</h1>
       </div>
       <BsChevronLeft onClick={prevSlide} className="arrow arrow-left" />
@@ -43,7 +47,9 @@ export const Carousel = ({ data }) => {
         {data.map((_, idx) => (
           <button
             key={idx}
-            className={slide === idx ? "indicator" : "indicator indicator-inactive"}
+            className={
+              slide === idx ? "indicator" : "indicator indicator-inactive"
+            }
             onClick={() => setSlide(idx)}
           ></button>
         ))}
