@@ -1,11 +1,15 @@
 import React from 'react';
 import './HeroSection.css'; // Import the CSS for this component
+import { Carousel } from '../image-carousel/Carousel';
+import { slides } from "../../data/carouselData.json";
 
 const HeroSection = () => {
   return (
     <div>
       <div className="hero-section-1">
-        <div className="left-box"></div>
+        <div className="left-box">
+          <Carousel data={slides}/>
+        </div>
         <div className="right-boxes">
           <div className="top-right-box">
             <div className="img1-box"></div>
@@ -31,12 +35,12 @@ const HeroSection = () => {
         <div className="boxes">
           <div className="transparent-box mission">
             <h2>Mission</h2>
-            <p>Nuestra misión en Aqua Piscinas CR es ofrecer soluciones de construcción y remodelación de piscinas de la más alta calidad en La Fortuna de San Carlos, Costa Rica. Nos esforzamos por brindar a nuestros clientes servicios excepcionales, utilizando técnicas y materiales innovadores, para crear espacios acuáticos únicos y duraderos. Trabajamos en estrecha colaboración con nuestros clientes para. Trabajamos en estrecha colaboración con nuestros clientes para. Trabajamos en estrecha colaboración con nuestros clientes para. Nos esforzamos por brindar a nuestros clientes servicios excepcionales, utilizando técnicas y materiales innovadores, para crear espacios acuáticos únicos y duraderos.
+            <p>Our mission at Aqua Piscinas CR is to offer high-quality pool construction and remodeling solutions in La Fortuna de San Carlos, Costa Rica. We strive to provide our clients with exceptional services, using innovative techniques and materials to create unique and durable aquatic spaces. We work closely with our clients to ensure their satisfaction and aim to deliver outstanding results. Our goal is to use cutting-edge methods and materials to craft long-lasting, one-of-a-kind aquatic environments.
             </p>
           </div>
           <div className="transparent-box vision">
             <h2>Vision</h2>
-            <p>Nuestra misión en Aqua Piscinas CR es ofrecer soluciones de construcción y remodelación de piscinas de la más alta calidad en La Fortuna de San Carlos, Costa Rica. Nos esforzamos por brindar a nuestros clientes servicios excepcionales, utilizando técnicas y materiales innovadores, para crear espacios acuáticos únicos y duraderos. Trabajamos en estrecha colaboración con nuestros clientes para. Trabajamos en estrecha colaboración con nuestros clientes para. Trabajamos en estrecha colaboración con nuestros clientes para. Nos esforzamos por brindar a nuestros clientes servicios excepcionales, utilizando técnicas y materiales innovadores, para crear espacios acuáticos únicos y duraderos.
+            <p>Our mission at Aqua Piscinas CR is to offer high-quality pool construction and remodeling solutions in La Fortuna de San Carlos, Costa Rica. We strive to provide our clients with exceptional services, using innovative techniques and materials to create unique and durable aquatic spaces. We work closely with our clients to ensure their satisfaction and aim to deliver outstanding results. Our goal is to use cutting-edge methods and materials to craft long-lasting, one-of-a-kind aquatic environments.
             </p>
           </div>
         </div>
