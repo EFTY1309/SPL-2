@@ -8,67 +8,70 @@
     height: calc(100% - 55px);
     margin: 7px;
     margin-top: 20px;
-  }
+}
 
-  .du-logo-and-text {
+.du-logo-and-text {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-  }
+}
 
-  .logo-du {
+.logo-du {
     height: 28px;
     width: auto;
-  }
+}
 
-  .DU-text {
+.DU-text {
     color: #5E5E5E;
     font-size: 28px;
     font-weight: 600;
     text-align: center;
-  }
-  
-  .slide {
+}
+
+.slide {
     border-radius: 0.5rem;
     box-shadow: 0px 0px 7px #666;
     width: 100%;
     height: 100%;
-  }
-  
-  .slide-hidden {
+    transition: opacity 0.5s ease-in-out; /* Add transition for opacity */
+}
+
+.slide-hidden {
     display: none;
-  }
-  
-  .arrow {
+}
+
+.arrow {
     position: absolute;
     filter: drop-shadow(0px 0px 5px #555);
     width: 2rem;
     height: 2rem;
     color: #E1F5F8;
-  }
-  
-  .arrow:hover {
+    z-index: 1; /* Ensure arrows appear above slides */
+    transition: color 0.3s ease; /* Add transition for color */
+}
+
+.arrow:hover {
     cursor: pointer;
-  }
-  
-  .arrow-left {
+}
+
+.arrow-left {
     left: .2rem;
-  }
-  
-  .arrow-right {
+}
+
+.arrow-right {
     right: .2rem;
-  }
-  
-  .indicators {
+}
+
+.indicators {
     display: flex;
     position: absolute;
     bottom: .1rem;
-  }
-  
-  .indicator {
+}
+
+.indicator {
     background-color: #080034;
     height: 0.4rem;
     width: 0.4rem;
@@ -78,8 +81,9 @@
     box-shadow: 0px 0px 5px #555;
     margin: 0 0.2rem;
     cursor: pointer;
-  }
-  
-  .indicator-inactive {
+    transition: background-color 0.3s ease; /* Add transition for background color */
+}
+
+.indicator-inactive {
     background-color: #E1F5F8;
-  }
+}

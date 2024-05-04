@@ -49,11 +49,15 @@ const HeroSection = () => {
 
 
       <div className="hero-section-3">
-          <img src="../../../public/images/DU_swimming_pool2.jpg" />
+        <div className="overlay">
+          <div className="left-box">
+            <button className="btn">Gallery</button>
+          </div>
           <div className="glass-box">
             <h3>Dive into our gallery and explore the splendor of aquatic moments captured in time.</h3>
           </div>
-
+        </div>
+        <img src="../../../public/images/DU_swimming_pool3.jpg" alt="Swimming Pool" />
       </div>
 
       <div className="hero-section-4">
@@ -63,7 +67,7 @@ const HeroSection = () => {
 
       <div className="hero-section-5">
           <h1>Contact us</h1>
-          <img src="../../../public/images/DU_swimming_pool3.jpg" />
+          <img src="../../../public/images/DU_swimming_pool2.jpg" />
       </div>
 
     </div>
