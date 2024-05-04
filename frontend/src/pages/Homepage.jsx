@@ -2,7 +2,7 @@ import React from "react";
 import HeroSection from "../components/hero/HeroSection";
 import MainLayout from "../layout/MainLayout";
 
-const Homepage = () => {
+const HomePage = () => {
   return (
     <MainLayout>
       <HeroSection />
@@ -10,4 +10,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default HomePage;

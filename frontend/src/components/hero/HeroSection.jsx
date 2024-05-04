@@ -2,6 +2,7 @@ import React from "react";
 import "./HeroSection.css"; // Import the CSS for this component
 import { Carousel } from "../image-carousel/Carousel";
 import { slides } from "../../data/carouselData.json";
+import Button1 from "../buttons/Button1";
 
 const HeroSection = () => {
   return (
@@ -69,7 +70,7 @@ const HeroSection = () => {
       <div className="hero-section-3">
         <div className="overlay">
           <div className="left-box-gallery">
-            <button className="btn">Gallery</button>
+            <Button1 text="Gallery" to="/signin"/> 
           </div>
           <div className="glass-box">
             <h3>

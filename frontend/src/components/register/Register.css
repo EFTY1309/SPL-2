@@ -1,3 +1,7 @@
+.App {
+    margin-top: 80px;
+}
+
 .registration-button{
     display: flex;
     flex-direction: column;
