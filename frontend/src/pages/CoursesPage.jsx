@@ -1,7 +1,7 @@
 import React from "react";
 import MainLayout from "../layout/MainLayout";
 
-const Courses = () => {
+const CoursesPage = () => {
   return (
     <MainLayout>
         
@@ -9,4 +9,4 @@ const Courses = () => {
   );
 };
 
-export default Courses;
+export default CoursesPage;

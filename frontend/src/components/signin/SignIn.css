@@ -1,0 +1,54 @@
+.loginsignup{
+    width: 100%;
+    height: 80vh;
+    background: #fce3fe;
+    padding-top: 100px;
+}
+
+.loginsignup-container{
+    width: 580x;
+    height: 600px;
+    background: white;
+    margin: auto;
+    padding: 40px 60px;
+    align-items: center;
+   
+}
+.loginsignup-container h1{
+    margin: 20px 0px;
+    
+}
+.loginsignup-fields{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
+.loginsignup-fields input{
+    height: 72px;
+    width: 98%;
+    padding-left: 20px;
+    border: 1px sold #c9c9c9;
+    outline: none;
+    color: #5c5c5c;
+    font-size: 18px;
+
+}
+.loginsignup-container button{
+    width: 400px;
+    height: 72px;
+    color: white;
+    background: #080034;
+    margin-top: 30px;
+    border: none;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.forget-password{
+    margin-top: 20px;
+    text-align: right;
+    font-weight: 500;
+    cursor: pointer;
+    font-size:20px ;
+}

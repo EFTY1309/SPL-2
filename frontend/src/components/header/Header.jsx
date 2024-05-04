@@ -2,17 +2,18 @@
 import React from "react";
 import "./Header.css"; // Import the CSS for this component
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 
 
 const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <img
-          src="/images/Logo.png"
-          alt="Dhaka University Swimming Pools Logo"
-        />
+        <Link to="/">
+          <img
+            src="/images/Logo.png"
+            alt="Dhaka University Swimming Pools Logo"
+          />
+        </Link>
       </div>
       <nav className="navigation">
         <ul>
