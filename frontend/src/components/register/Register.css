@@ -2,13 +2,14 @@
     margin-top: 80px;
 }
 
-.registration-button{
+.registration-button {
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
 }
-.registration-button button{
+
+.registration-button button {
     margin: 10px;
     height: 40px;
     width: 50%;
@@ -16,32 +17,86 @@
     justify-content: center;
     cursor: pointer;
     border-radius: 5px;
-    color: #080034;
+    color: #fff;
+    background-color: #080034;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.registration-button button:hover {
+    background-color: #0a662b;
 }
 
 .swimmer-registration {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: white;
+    background-color: #fff;
     color: #080034;
-    height: 60%;
-    width: 400px; /* Set the width of the div */
+    height: auto;
+    width: 400px;
     margin: 0 auto; 
     border: 1px solid #080034;
-    padding: 9px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .swimmer-registration h2 {
     color: #080034;
+    text-align: center;
+    margin-bottom: 20px;
 }
-.submit {
-    width: 421px; /* Adjust width as needed */
-    height: 50px; /* Adjust height as needed */
-    font-size: 18px; /* Adjust text size as needed */
-    margin: 0 auto; /* Horizontally center the button */
-    display: block; /* Ensure the button is displayed as a block element */
-    background-color: #080034;
-    color:white;
-    margin-top: 5px;
+
+.swimmer-registration label {
+    color: #080034;
+    text-align: start;
     margin-bottom: 5px;
+}
+
+.swimmer-registration select, .swimmer-registration input, .swimmer-registration select option {
+    color: #080034;
+    text-align: start;
+}
+
+.swimmer-registration input[type="text"],
+.swimmer-registration input[type="email"],
+.swimmer-registration input[type="password"],
+.swimmer-registration select {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.swimmer-registration input[type="date"] {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.submit {
+    height: 40px;
+    width: 40%;
+    font-size: 18px;
+    margin: 10px auto;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #080034;
+    color: #fff;
+    border: none;
+    transition: all 0.3s ease;
+    display: block; /* Ensures the button is displayed as a block element */
+}
+
+
+.submit:hover {
+    background-color: #0a662b;
 }

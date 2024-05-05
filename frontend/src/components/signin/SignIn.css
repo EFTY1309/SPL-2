@@ -1,55 +1,74 @@
-.loginsignup{
+.loginsignup {
     width: 100%;
     height: 80vh;
-    background: #fce3fe;
-    padding-top: 100px;
+    background: transparent;
     margin-top: 80px;
 }
 
-.loginsignup-container{
-    width: 580x;
-    height: 600px;
+.loginsignup-container {
+    width: 500px;
+    height: auto;
     background: white;
     margin: auto;
     padding: 40px 60px;
-    align-items: center;
-   
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
-.loginsignup-container h1{
-    margin: 20px 0px;
-    
+
+.loginsignup-container h1 {
+    margin: 20px 0;
+    color: #080034;
+    font-size: 20px;
 }
-.loginsignup-fields{
+
+.loginsignup-fields {
     display: flex;
     flex-direction: column;
     gap: 30px;
     margin-top: 30px;
 }
-.loginsignup-fields input{
-    height: 72px;
-    width: 98%;
+
+.loginsignup-fields input {
+    height: 50px;
+    width: 100%;
     padding-left: 20px;
-    border: 1px sold #c9c9c9;
+    border: 1px solid #c9c9c9;
     outline: none;
     color: #5c5c5c;
     font-size: 18px;
-
+    border-radius: 5px;
 }
-.loginsignup-container button{
-    width: 400px;
-    height: 72px;
+
+.loginsignup-fields label, .loginsignup-fields input{
+    color: #080034;
+    text-align: start;
+}
+
+.loginsignup-container button {
+    width: 100%;
+    height: 50px;
     color: white;
     background: #080034;
     margin-top: 30px;
     border: none;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
 }
-.forget-password{
+
+.loginsignup-container button:hover {
+    background: #0a662b;
+}
+
+.forget-password {
     margin-top: 20px;
     text-align: right;
     font-weight: 500;
     cursor: pointer;
-    font-size:20px ;
+    font-size: 16px;
+    color: #080034;
 }
+
