@@ -116,7 +116,7 @@ const handleInputChange = (event) => {
     switch (registrationType) {
       case 'swimmer':
         return (
-          <div>
+          <div className='swimmer-registration' >
             <h2>Swimmer Registration Form</h2>
             <label htmlFor="swimmerName">Name</label><br/>
             <input type="text" value={swimmerData.name} id="swimmerName" name="name" onChange={handleInputChange}  required /><br/>
@@ -144,7 +144,7 @@ const handleInputChange = (event) => {
         );
       case 'admin':
         return (
-          <div>
+          <div className='swimmer-registration' >
             <h2>Admin Registration Form</h2>
             <label htmlFor="adminName">Name</label><br/>
             <input type="text" value={adminData.name} id="adminName" name="name" onChange={handleInputChange} /><br/>
@@ -183,7 +183,7 @@ const handleInputChange = (event) => {
         </div>
       )}
       {registrationType && renderForm()}
-      {registrationType && <button  onClick={signup}>Submit</button>}
+      {registrationType && <button className='submit'  onClick={signup}>Submit</button>}
     </div>
   );
 }
