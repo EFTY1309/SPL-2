@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // App.js
 import React from 'react';
 import styled from 'styled-components';
@@ -31,9 +32,22 @@ function App() {
        </div>
       
     
+=======
+import React from "react";
+import HomePage from "./pages/HomePage";
+
+function App() {
+  return (
+    <>
+      <HomePage />
+    </>
+>>>>>>> Rafid
   );
 }
 
 export default App;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> Rafid

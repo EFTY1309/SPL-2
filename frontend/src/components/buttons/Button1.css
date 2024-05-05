@@ -1,0 +1,18 @@
+.btn {
+  background-color: #080034;
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 100px; /* Adjust the minimum width as needed */
+}
+
+.btn:hover {
+  background-color: #78d5e3;
+  color: #080034;
+  border: 2px solid #080034;
+}
