@@ -1,24 +1,28 @@
+// Courses.jsx
+
 import React from "react";
 import "./Courses.css";
-import Button1 from "../buttons/Button1";
+import CourseCard from "./CourseCard";
 
 const Courses = () => {
   return (
     <div>
-      <div className="section-1">
-          <div className="left-box-courses">
-            <h1>Butterfly</h1>
-            <p>Nuestra misión en Aqua Piscinas CR es ofrecer soluciones de construcción y remodelación de piscinas de la más alta calidad en La Fortuna de San Carlos, Costa Rica. Nos esforzamos por brindar a nuestros clientes servicios excepcionales, utilizando técnicas y materiales innovadores, para crear espacios acuáticos únicos y duraderos. Trabajamos en estrecha colaboración con nuestros clientes para. Trabajamos en estrecha colaboración con nuestros clientes para. Trabajamos en estrecha colaboración con nuestros clientes para. Nos esforzamos por brindar a nuestros clientes servicios excepcionales, utilizando técnicas y materiales innovadores, para crear espacios acuáticos únicos y duraderos.
-            </p>
-            <Button1 text="Enroll Now" to="/signin"/> 
-          </div>
-          <div className="right-box-courses">
-            <img
-              src="../../../public/images/Butterfly.jpg"
-              alt="Butterfly Image"
-            />
-          </div>
-      </div>
+      <CourseCard
+        className="course-card-1"
+        imageSrc="../../../public/images/Butterfly.jpg"
+        title="Butterfly"
+        description="Butterfly swimming is a beautiful and dynamic stroke characterized by its undulating movement, resembling the graceful fluttering of a butterfly's wings. It's often considered one of the most challenging strokes in competitive swimming due to its demanding technique and intense physical exertion. In butterfly stroke, swimmers propel themselves through the water by simultaneously moving both arms in an over-the-water recovery motion, while executing a powerful dolphin kick. This coordination of arm and leg movements requires exceptional upper body strength, core stability, and flexibility. The timing and rhythm of the stroke are crucial; a slight deviation can disrupt the fluidity and efficiency of the swimmer's movement."
+        buttonText="Enroll Now"
+        buttonLink="/signin"
+      />
+      <CourseCard
+        className="course-card-2"
+        imageSrc="../../../public/images/Breaststroke.jpg"
+        title="Freestyle"
+        description="Butterfly swimming is a beautiful and dynamic stroke characterized by its undulating movement, resembling the graceful fluttering of a butterfly's wings. It's often considered one of the most challenging strokes in competitive swimming due to its demanding technique and intense physical exertion. In butterfly stroke, swimmers propel themselves through the water by simultaneously moving both arms in an over-the-water recovery motion, while executing a powerful dolphin kick. This coordination of arm and leg movements requires exceptional upper body strength, core stability, and flexibility. The timing and rhythm of the stroke are crucial; a slight deviation can disrupt the fluidity and efficiency of the swimmer's movement."
+        buttonText="Enroll Now"
+        buttonLink="/signin"
+      />
     </div>
   );
 };
