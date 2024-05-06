@@ -1,13 +1,13 @@
 import React from "react";
-import HeroSection from "../components/hero/HeroSection";
 import MainLayout from "../layout/MainLayout";
+import Courses from "../components/courses/Courses";
 
-const HomePage = () => {
+const CoursesPage = () => {
   return (
     <MainLayout>
-      <HeroSection />
+        <Courses />
     </MainLayout>
   );
 };
 
-export default HomePage;
+export default CoursesPage;
