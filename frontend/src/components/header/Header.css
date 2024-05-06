@@ -1,4 +1,6 @@
 /* Header.css */
+
+/* Base styles */
 .header {
   height: 60px;
   background: linear-gradient(to right, #b4e8ef, #78d5e3, #080034);
@@ -9,7 +11,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  right: 0; /* Set right to 0 to cover full width */
+  right: 0;
   z-index: 1000;
 }
 
@@ -31,12 +33,12 @@
   gap: 28px;
 }
 
-.navigation ul li{
+.navigation ul li {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.navigation ul li a{ 
+.navigation ul li a {
   color: #5e5e5e;
   font-weight: 600;
   font-size: 15px;
@@ -70,7 +72,7 @@
   padding: 0 8px;
   cursor: pointer;
   font-weight: bold;
-  text-decoration: none; /* Add this */
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 
@@ -78,4 +80,76 @@
   background-color: #78d5e3;
   color: #080034;
   transform: scale(1.1);
+}
+
+/* Hamburger menu styles */
+.menu-toggle {
+  display: none; /* Hide by default */
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.4);
+  color: #080034;
+}
+
+.navigation.open {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: #080034;
+  padding: 20px;
+  border-bottom: 2px solid #b4e8ef;
+}
+
+.navigation.open ul li {
+  margin-top: 10px;
+}
+
+.navigation.open ul li a {
+  color: #78d5e3;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+  }
+
+  .logo img {
+    width: 120px;
+    height: 38px;
+  }
+
+  .navigation ul {
+    gap: 20px;
+  }
+
+  .auth-buttons {
+    gap: 5px;
+  }
+
+  .auth-button {
+    width: 70px;
+    font-size: 12px;
+    line-height: 30px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navigation {
+    display: none; /* Hide navigation by default */
+    transition: all 0.3s ease;
+  }
 }
