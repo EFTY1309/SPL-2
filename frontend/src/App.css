@@ -17,9 +17,16 @@ body {
   background-attachment: scroll; /* Scroll background image while scrolling */
 }
 
+@media (max-width: 768px) {
+  body {
+    margin-left: 30px; /* Adjust for smaller screens */
+    margin-right: 30px; /* Adjust for smaller screens */
+  }
+}
+
 /* Define a class for the footer */
-.footer-no-margin {
+/* .footer-no-margin {
   margin-left: 0;
   margin-right: 0;
   left: 0;
-}
+} */
