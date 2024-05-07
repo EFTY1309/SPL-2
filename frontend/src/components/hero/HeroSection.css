@@ -224,9 +224,9 @@
 
   .img1-box,
   .img2-box {
-    width: 100%;
+    width: calc(100% - 10px);
     height: 200px; /* Adjusted height */
-    margin: 10px auto; /* Adjusted margin */
+    margin: 5px auto; /* Adjusted margin */
     background-size: contain; /* Ensure image is contained within the box */
     background-repeat: no-repeat;
     background-position: center;
@@ -242,9 +242,9 @@
   .hero-section-2 img,
   .hero-section-4 img,
   .hero-section-5 img {
-    width: calc(100% - 20px);
+    width: calc(100% - 10px);
     height: auto;
-    margin: 10px 0;
+    margin: 5px 0;
   }
 
   .hero-section-2 .boxes {
