@@ -1,44 +1,53 @@
+/* Footer.css */
+
 * {
   margin: 0;
   padding: 0;
   font-size: 15px;
   color: white;
 }
+
 footer {
   background-color: rgba(22, 44, 77, 0.4);
   padding-top: 40px;
-  /* background: #162C4D;
-        opacity: .6; */
   position: relative;
   bottom: 0;
   left: 0;
   width: 100%;
 }
+
 .container {
   width: 100%;
   margin: auto;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; /* Added for responsiveness */
 }
+
 .footer-content {
   width: 33.3%;
 }
+
 h3 {
   font-size: 24px;
   margin-bottom: 15px;
   text-align: center;
 }
+
 .footer-content p {
   width: 190px;
   margin: auto;
   padding: 7px;
 }
+
 .footer-content ul {
   text-align: center;
 }
+
 .list {
   padding: 0;
 }
+
 .list li {
   width: auto;
   text-align: center;
@@ -46,6 +55,7 @@ h3 {
   padding: 7px;
   position: relative;
 }
+
 .list li::before {
   content: "";
   position: absolute;
@@ -57,41 +67,67 @@ h3 {
   background: #78d5e3;
   transition-duration: 0.5s;
 }
+
 .list li:hover::before {
   width: 70px;
 }
+
 .social-icons {
   text-align: center;
   padding: 0;
 }
+
 .social-icons li {
   display: flex;
   flex-direction: column;
   text-align: center;
   padding: 5px;
 }
+
 .social-icons i {
   color: white;
   font-size: 25px;
 }
+
 a {
   text-decoration: none;
 }
+
 a:hover {
   color: #78d5e3;
 }
+
 .social-icons i:hover {
   color: #78d5e3;
 }
+
 .bottom-bar {
   background: #092651;
   text-align: center;
   padding: 10px 0;
   margin-top: 50px;
 }
+
 .bottom-bar p {
   color: #ffffff;
   margin: 0;
   font-size: 14px;
   padding: 7px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+
+  .container {
+    gap: 30px;
+  }
+
+  .footer-content {
+    width: 100%; /* Full width for smaller screens */
+  }
+
+  .social-icons li {
+    display: inline-block; /* Display icons horizontally */
+    margin: 5px; /* Adjusted margin */
+  }
 }
