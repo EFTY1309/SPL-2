@@ -103,7 +103,7 @@
 .hero-section-4 img,
 .hero-section-5 img {
   width: calc(100% - 14px);
-  height: calc(100% - 55px);
+  height: calc(100% - 60px);
   margin: 7px;
   border-radius: 8px;
 }
