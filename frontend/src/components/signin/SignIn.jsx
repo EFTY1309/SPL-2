@@ -1,60 +1,95 @@
 import React, { useState } from 'react';
-import './SignIn.css'
+import './SignIn.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import Button2 from '../buttons/Button2';
 
 const SignIn = () => {
-  console.log("hello world");
-
   const [formData, setFormData] = useState({
-    username:"",
-    password:"",
-    email:""
-  })
+    email: '',
+    password: '',
+    showPassword: false,
+  });
 
-  const changeHandler=(e)=>{
-    setFormData({...formData,[e.target.name]:e.target.value})
-  }
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const login = async()=>{
-    console.log("Login function executed",formData)
+  const togglePasswordVisibility = () => {
+    setFormData({ ...formData, showPassword: !formData.showPassword });
+  };
+
+  const login = async () => {
+    console.log('Login function executed', formData);
 
     let responseData;
-    await fetch('http://localhost:4003/login',{
-     method:'POST',
-     headers:{
-       Accept:'application/form-data',
-       'Content-Type':'application/json',
-     },
-     body:JSON.stringify(formData),    
- }).then((response)=>response.json()).then((data)=>responseData=data)
- 
- if(responseData.success){
-   localStorage.setItem('auth-token',responseData.token);
-   window.location.replace("/");
- }
- else{
-   alert(responseData.errors)
- }
+    await fetch('http://localhost:4003/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/form-data',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => (responseData = data));
 
-}
+    if (responseData.success) {
+      localStorage.setItem('auth-token', responseData.token);
+      window.location.replace('/');
+    } else {
+      alert(responseData.errors);
+    }
+  };
 
   return (
-    <div className='loginsignup'>
+    <div className="loginsignup">
       <div className="loginsignup-container">
         <h1>Sign in to Dhaka University Swimming Pool</h1>
         <div className="loginsignup-fields">
           <label htmlFor="email">Email</label>
-          <input type="email" value={formData.email} id="Email" name="email" onChange={changeHandler} />
-          <label htmlFor="password">Password</label>
-          <input type="password" value={formData.password} id="Password" name="password" onChange={changeHandler}/>
+          <input
+            type="email"
+            value={formData.email}
+            id="email"
+            name="email"
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="password">Password
+            <div className="password-input">
+              <input
+                type={formData.showPassword ? 'text' : 'password'}
+                value={formData.password}
+                id="password"
+                name="password"
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={togglePasswordVisibility}
+              >
+                {formData.showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+          </label>
         </div>
-        <div className='forget-password'>
-          Forgot your password?
-        </div>
-        <button onClick={login} >Sign In</button>
-      </div>
-      
-    </div>
-  )
-}
 
-export default SignIn
+        <div className="forgot-password">
+          <Link to="/forgot-password">Forgot your password?</Link>
+        </div>
+
+        <Button2 text="Sign In" to="/dashboard" className="signin-btn"/>
+
+        <div className="signup-link">
+          <span>Don't have an account? </span>
+          <Link to="/register">Register</Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SignIn;
