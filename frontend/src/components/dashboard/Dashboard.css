@@ -54,14 +54,14 @@
 .dashboard-container {
   margin-top: 80px;
   margin-bottom: 40px;
-  max-width: 1200px;
-  padding: 0 20px;
+  max-width: 100%;
 }
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+  /* padding: 0 80px; */
 }
 
 .dashboard-card {
