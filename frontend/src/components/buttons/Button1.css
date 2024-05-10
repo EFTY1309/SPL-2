@@ -1,4 +1,4 @@
-.btn {
+.btn-1 {
   background-color: #080034;
   color: white;
   font-weight: 600;
@@ -8,10 +8,17 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  min-width: 100px; /* Adjust the minimum width as needed */
+  min-width: 100px;
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    padding: 8px 16px;
+    font-size: 14px;
+    min-width: 80px;
+  }
 }
 
-.btn:hover {
+.btn-1:hover {
   background-color: #78d5e3;
   color: #080034;
   border: 2px solid #080034;

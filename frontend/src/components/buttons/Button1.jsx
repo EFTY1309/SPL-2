@@ -5,7 +5,7 @@ import "./Button1.css";
 const Button1 = ({ text, to }) => {
   return (
     <div>
-      <Link to={to} className="btn">{text}</Link>
+      <Link to={to} className="btn-1">{text}</Link>
     </div>
   );
 };

@@ -1,3 +1,5 @@
+/* Dashboard.css */
+
 .swimming-journey {
   display: flex;
   flex-direction: column;
@@ -22,7 +24,7 @@
   object-fit: cover;
 }
 
-.glass-box {
+.glass-box-dashboard {
   position: absolute;
   top: 0;
   left: 0;
@@ -31,7 +33,7 @@
   flex-direction: column;
   gap: 20px;
   width: calc(40% - 6px);
-  height: calc(100% - 46px);
+  height: calc(100% - 6px);
   margin: 3px;
   padding-left: 40px;
   background: rgba(255, 255, 255, 0);
@@ -41,14 +43,13 @@
   -webkit-backdrop-filter: blur(9.7px);
 }
 
-.glass-box h3 {
+.glass-box-dashboard h3 {
   padding-right: 160px;
+  padding-top: 40px;
   font-size: 28px;
   color: white;
   text-align: left;
 }
-
-/* Dashboard.css */
 
 .dashboard-container {
   margin-top: 80px;
@@ -64,6 +65,9 @@
 }
 
 .dashboard-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -83,19 +87,14 @@
   margin-bottom: 30px;
 }
 
-.dashboard-link {
-  display: block;
-  background-color: #78d5e3;
-  color: #ffffff;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-align: center;
-  transition: background-color 0.3s;
+/* Responsive styles */
+@media (max-width: 768px) {
+  .glass-box-dashboard h3 {
+    padding-right: 160px;
+    padding-top: 30px;
+    font-size: 24px;
+    color: white;
+    text-align: left;
+  }
+  
 }
-
-.dashboard-link:hover {
-  background-color: #5ca6b9;
-}
-
-
