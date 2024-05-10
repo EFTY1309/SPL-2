@@ -1,4 +1,6 @@
 /* HeroSection.css */
+
+/* Base styles */
 .hero-section-1 {
   display: flex;
   justify-content: space-between;
@@ -11,11 +13,10 @@
 }
 
 .left-box {
-  flex: 1; /* flex-grow flex-shrink flex-basis */
+  flex: 1;
   height: 100%;
   background-color: #e1f5f8;
   border-radius: 10px;
-  /* border: 1px solid #78D5E3; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -23,7 +24,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* flex: 0 0 25%; */
   height: 100%;
   gap: 10px;
 }
@@ -103,7 +103,7 @@
 .hero-section-4 img,
 .hero-section-5 img {
   width: calc(100% - 14px);
-  height: calc(100% - 55px);
+  height: calc(100% - 60px);
   margin: 7px;
   border-radius: 8px;
 }
@@ -112,9 +112,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   position: absolute;
   height: calc(100% - 55px);
   width: calc(100% - 250px);
+  padding: 10px;
 }
 
 .hero-section-2 .transparent-box {
@@ -122,12 +124,11 @@
   background-color: rgba(255, 255, 255, 0.6);
   padding: 20px;
   border-radius: 8px;
-  margin: 0 7px;
   align-items: center;
 }
 
 .hero-section-2 .transparent-box h2 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
   color: #080034;
   margin-bottom: 10px;
@@ -135,8 +136,8 @@
 
 .hero-section-2 .transparent-box p {
   font-size: 16px;
-  color: #080034;
   font-weight: 600;
+  color: #080034;
 }
 
 .hero-section-3 {
@@ -182,8 +183,9 @@
 }
 
 .glass-box h3 {
-  font-size: 28px;
+  font-size: 24px;
   color: #e1f5f8;
+
   text-align: center;
 }
 
@@ -192,4 +194,78 @@
   align-items: center;
   justify-content: center;
   margin-left: 70px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hero-section-1 {
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-box,
+  .top-right-box,
+  .bottom-right-box {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    order: 1;
+    height: auto;
+  }
+
+  .right-boxes {
+    width: 100%;
+    order: 2;
+    display: flex; /* Added to ensure the right boxes are displayed properly */
+    flex-direction: column; /* Added to stack the right boxes */
+  }
+
+  .img1-box,
+  .img2-box {
+    width: calc(100% - 10px);
+    height: 200px; /* Adjusted height */
+    margin: 5px auto; /* Adjusted margin */
+    background-size: contain; /* Ensure image is contained within the box */
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .hero-section-2,
+  .hero-section-3,
+  .hero-section-4,
+  .hero-section-5 {
+    height: auto;
+  }
+
+  .hero-section-2 img,
+  .hero-section-4 img,
+  .hero-section-5 img {
+    width: calc(100% - 10px);
+    height: auto;
+    margin: 5px 0;
+  }
+
+  .hero-section-2 .boxes {
+    width: 100%;
+    position: static;
+    flex-direction: column;
+  }
+
+  .hero-section-2 .transparent-box {
+    width: calc(100% - 50px);
+  }
+
+  .glass-box {
+    width: 100%;
+  }
+
+  .left-box-gallery {
+    margin: 0;
+  }
+
+  .glass-box h3 {
+    font-size: 16px;
+  }
 }

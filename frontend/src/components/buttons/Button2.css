@@ -1,0 +1,20 @@
+/* Button2.css */
+.btn-2 {
+    display: block;
+    background-color: #080034;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+    border: 2px solid transparent;
+  }
+  
+  .btn-2:hover {
+    background-color: #78d5e3;
+    color: #080034;
+    font-weight: 600;
+    border-color: #080034;
+  }
+  

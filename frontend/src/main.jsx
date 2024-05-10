@@ -6,6 +6,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import Courses from "./pages/CoursesPage.jsx";
 import SignIn from "./pages/SignInPage.jsx";
 import Register from "./pages/RegisterPage.jsx";
+import Dashboard from "./pages/SwimmerDashboard.jsx";
 
 import {
   createBrowserRouter,
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "register",
     element: <Register />,
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard />,
   },
 ]);
 
