@@ -43,10 +43,10 @@ const SignIn = () => {
   };
 
   return (
-    <div className="loginsignup">
-      <div className="loginsignup-container">
+    <div className="login">
+      <div className="login-container">
         <h1>Sign in to Dhaka University Swimming Pool</h1>
-        <div className="loginsignup-fields">
+        <div className="login-fields">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -71,7 +71,7 @@ const SignIn = () => {
                 className="password-toggle"
                 onClick={togglePasswordVisibility}
               >
-                {formData.showPassword ? <FaEyeSlash /> : <FaEye />}
+              {formData.showPassword ? <FaEye /> : <FaEyeSlash />}
               </button>
             </div>
           </label>

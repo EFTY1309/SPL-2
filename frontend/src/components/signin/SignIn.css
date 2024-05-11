@@ -1,12 +1,12 @@
-.loginsignup {
-    width: 100%;
+.login {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     min-height: 100vh;
   }
   
-  .loginsignup-container {
+  .login-container {
     width: 80%;
     max-width: 500px;
     padding: 40px;
@@ -17,29 +17,29 @@
     text-align: center;
   }
   
-  .loginsignup-container h1 {
+  .login-container h1 {
     margin-bottom: 20px;
     color: #080034;
     font-size: 24px;
   }
   
-  .loginsignup-fields {
+  .login-fields {
     margin-top: 30px;
   }
 
-  .loginsignup-fields label {
+  .login-fields label {
     margin-top: 20px;
   }
   
-  .loginsignup-fields label,
-  .loginsignup-fields input {
+  .login-fields label,
+  .login-fields input {
     display: block;
     width: 100%;
     color: #080034;
     text-align: left;
   }
   
-  .loginsignup-fields input {
+  .login-fields input {
     height: 40px;
     width: calc(100% - 10px);
     border: 1px solid #c9c9c9;

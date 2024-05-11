@@ -1,190 +1,163 @@
 import React, { useState } from 'react';
-import "./Register.css"
+import './Register.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import Button2 from '../buttons/Button2';
 
 const Register = () => {
-
-  const [registrationType, setRegistrationType] = useState('');
- 
-  const [swimmerData, setSwimmerData] = useState({
-      name:"",
-      email:"",
-      number:"",
-      category:"",
-      gender:"",
-      dob:"",
-      registrationNumber:"",
-      password:"",
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    number: '',
+    category: '',
+    gender: '',
+    dob: '',
+    registrationNumber: '',
+    password: '',
+    confirmPassword: '', // New state for confirm password
   });
-  const [adminData, setAdminData] = useState({
-      name:"",
-      email:"",
-      number:"",
-      professionalPosition:"",
-      password:""
-  });
-  const [staffData, setStaffData] = useState({});
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleRegistrationTypeSelect = (type) => {
-    setRegistrationType(type);
+  const togglePasswordVisibility = () => {
+    setFormData({ ...formData, showPassword: !formData.showPassword });
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setFormData({ ...formData, showConfirmPassword: !formData.showConfirmPassword });
   };
 
   const handleSubmit = () => {
-    
-    switch (registrationType) {
-      case 'swimmer':
-        console.log('Swimmer form submitted:', swimmerData);
-      
-        break;
-      case 'admin':
-        console.log('Admin form submitted:', adminData);
-    
-        break;
-      case 'staff':
-        console.log('Staff form submitted:', staffData);
-    
-        break;
-      default:
-        console.log('No registration type selected');
-    }
-  };
-
-  const signup = async () => {
-    let responseData;
-    let formData;
-    
-    switch (registrationType) {
-        case 'swimmer':
-            formData = swimmerData;
-            break;
-        case 'admin':
-            formData = adminData;
-            break;
-        case 'staff':
-            formData = staffData;
-            break;
-        default:
-            console.log('No registration type selected');
-            return;
-    }
-
-    await fetch('http://localhost:4003/register', {
-        method: 'POST',
-        headers: {
-            Accept: 'application/form-data',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-    .then((response) => response.json())
-    .then((data) => (responseData = data));
-
-    if (responseData.success) {
-        localStorage.setItem('auth-token', responseData.token);
-        window.location.replace('/signin');
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match. Please re-enter.');
+      setFormData({ ...formData, password: '', confirmPassword: '' });
+      // Reset the passwords if they don't match
     } else {
-        alert(responseData.errors);
-    }
-};
-
-
-const handleInputChange = (event) => {
-  const { name, value } = event.target;
-
-  if (name === 'category') { // Handle category separately
-      setSwimmerData({ ...swimmerData, category: value });
-  } else {
-      switch (registrationType) {
-          case 'swimmer':
-              setSwimmerData({ ...swimmerData, [name]: value });
-              break;
-          case 'admin':
-              setAdminData({ ...adminData, [name]: value });
-              break;
-          case 'staff':
-              setStaffData({ ...staffData, [name]: value });
-              break;
-          default:
-              console.log('No registration type selected');
-      }
-  }
-};
-
-
-  const renderForm = () => {
-    switch (registrationType) {
-      case 'swimmer':
-        return (
-          <div className='swimmer-registration' >
-            <h2>Swimmer Registration Form</h2>
-            <label htmlFor="swimmerName">Name</label><br/>
-            <input type="text" value={swimmerData.name} id="swimmerName" name="name" onChange={handleInputChange}  required /><br/>
-            <label htmlFor="swimmerEmail">Email</label><br/>
-            <input type="email" value={swimmerData.email} id="swimmerEmail" name="email" onChange={handleInputChange}  required /><br/>
-            <label htmlFor="swimmerNumber">Number</label><br/>
-            <input type="text" value={swimmerData.number} id="swimmerNumber" name="number" onChange={handleInputChange}  required /><br/>
-            <label htmlFor="swimmerCategory">Select a swimmer category:</label><br/>
-            <select id="swimmerCategory" name="category" value={swimmerData.category} onChange={handleInputChange} required><br/>
-                  <option value="Dhaka University Student">Dhaka University Student</option>
-                  <option value="Sri LankaDU Teacher/Officer/Employee/Their Family Member">DU Teacher/Officer/Employee/Their Family Member</option>
-                  <option value="BUET/DMC Student">BUET/DMC Student</option>
-                  <option value="BUET/DMC Student">BUET/DMC Student</option>
-                  <option value="Associate Member">Associate Member</option>
-                  <option value="General Swimmer">General Swimmer</option>
-            </select>
-            <br/>
-            <label htmlFor="swimmerDOB">Date of Birth</label><br/>
-            <input type="date" id="swimmerDOB" name="dob" value={swimmerData.dob} onChange={handleInputChange}  required/><br/> 
-            <label htmlFor="swimmerRegistrationNumber">Registration Number for DU students</label><br/>
-            <input type="text" id="swimmerRegistrationNumber" name="registrationNumber" value={swimmerData.registrationNumber} onChange={handleInputChange}  required /><br/>
-            <label htmlFor="swimmerPassword">Password</label><br/>
-            <input type="password" value={swimmerData.password} id="swimmerPassword" name="password" onChange={handleInputChange} /><br/> 
-          </div>
-        );
-      case 'admin':
-        return (
-          <div className='swimmer-registration' >
-            <h2>Admin Registration Form</h2>
-            <label htmlFor="adminName">Name</label><br/>
-            <input type="text" value={adminData.name} id="adminName" name="name" onChange={handleInputChange} /><br/>
-            <label htmlFor="adminEmail">Email</label><br/>
-            <input type="email" value={adminData.email} id="adminEmail" name="email" onChange={handleInputChange} /><br/>
-            <label htmlFor="adminNumber">Number</label><br/>
-            <input type="text" value={adminData.number} id="adminNumber" name="number" onChange={handleInputChange} /><br/>
-            <label htmlFor="adminPosition">Professional Position</label><br/>
-            <input type="text" value={adminData.professionalPosition} id="adminPosition" name="professionalPosition" onChange={handleInputChange} /><br/>
-            <label htmlFor="adminPassword">Password</label><br/>
-            <input type="password" value={adminData.password} id="adminPassword" name="password" onChange={handleInputChange} /><br/>
-          </div>
-        );
-      case 'staff':
-        return (
-          <div>
-            <h2>Staff Registration Form</h2>
-            <label htmlFor="staffName">Name:</label>
-            <input type="text" id="staffName" name="name" onChange={handleInputChange} />
-           
-          </div>
-        );
-      default:
-        return null;
+      console.log('Form submitted:', formData);
+      // Proceed with form submission
     }
   };
 
   return (
-    <div className="App">
-      <h1>Registration</h1>
-      {!registrationType && (
-        <div className='registration-button'>
-          <button onClick={() => handleRegistrationTypeSelect('swimmer')}>Swimmer Registration</button>
-          <button onClick={() => handleRegistrationTypeSelect('admin')}>Admin Registration</button>
-          <button onClick={() => handleRegistrationTypeSelect('staff')}>Staff Registration</button>
+    <div className="signup">
+      <div className="signup-container">
+        <h1>Swimmer Registration Form</h1>
+        <div className="signup-fields">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            value={formData.name}
+            id="name"
+            name="name"
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            value={formData.email}
+            id="email"
+            name="email"
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="number">Mobile Number</label>
+          <input
+            type="text"
+            value={formData.number}
+            id="number"
+            name="number"
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="category">Select a Swimmer Category:</label>
+          <select
+            id="category"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Category</option>
+            <option value="Dhaka University Student">
+              Dhaka University Student
+            </option>
+            <option value="Sri LankaDU Teacher/Officer/Employee/Their Family Member">
+              DU Teacher/Officer/Employee/Their Family Member
+            </option>
+            <option value="BUET/DMC Student">BUET/DMC Student</option>
+            <option value="Associate Member">Associate Member</option>
+            <option value="General Swimmer">General Swimmer</option>
+          </select>
+          <label htmlFor="dob">Date of Birth</label>
+          <input
+            type="date"
+            id="dob"
+            name="dob"
+            value={formData.dob}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="registrationNumber">
+            Registration Number for DU Students
+          </label>
+          <input
+            type="text"
+            id="registrationNumber"
+            name="registrationNumber"
+            value={formData.registrationNumber}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="password">Password
+          <div className="password-input">
+          <input
+              type={formData.showPassword ? 'text' : 'password'}
+              value={formData.password}
+              id="password"
+              name="password"
+              onChange={handleChange}
+              required
+          />
+          <button
+            type="button"
+            className="password-toggle"
+            onClick={togglePasswordVisibility}
+          >
+          {formData.showPassword ? <FaEye /> : <FaEyeSlash />}
+          </button>
+          </div>
+          </label>
+          <label htmlFor="confirmPassword">Confirm Password
+          <div className="password-input">
+          <input
+            type={formData.showConfirmPassword ? 'text' : 'password'}
+            value={formData.confirmPassword}
+            id="confirmPassword"
+            name="confirmPassword"
+            onChange={handleChange}
+            required
+          />
+          <button
+            type="button"
+            className="confirm-password-toggle"
+            onClick={toggleConfirmPasswordVisibility}
+          >
+          {formData.showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+          </button>
+          </div>
+          </label>
         </div>
-      )}
-      {registrationType && renderForm()}
-      {registrationType && <button className='submit'  onClick={signup}>Submit</button>}
+        <Button2 text="Submit" onClick={handleSubmit} className="signup-btn" />
+        <div className="login-link">
+          <span>Already have an account? </span>
+          <Link to="/signin">Sign In</Link>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
-export default Register
+export default Register;
