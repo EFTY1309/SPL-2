@@ -10,6 +10,7 @@ import Register from "./pages/RegisterPage.jsx";
 import Dashboard from "./pages/SwimmerDashboard.jsx";
 import Profile from "./pages/ProfilePage.jsx";
 import UpdateProfile from "./pages/UpdateProfilePage.jsx";
+import ContactUs from "./pages/ContactUsPage.jsx";
 
 
 import {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "update-profile",
     element: <UpdateProfile />,
+  },
+  {
+    path: "contact-us",
+    element: <ContactUs />,
   },
 ]);
 
