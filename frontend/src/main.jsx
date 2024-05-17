@@ -11,6 +11,7 @@ import Dashboard from "./pages/SwimmerDashboard.jsx";
 import Profile from "./pages/ProfilePage.jsx";
 import UpdateProfile from "./pages/UpdateProfilePage.jsx";
 import ContactUs from "./pages/ContactUsPage.jsx";
+import AboutUs from "./pages/AboutUsPage.jsx";
 
 
 import {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
   {
     path: "contact-us",
     element: <ContactUs />,
+  },
+  {
+    path: "about",
+    element: <AboutUs />,
   },
 ]);
 

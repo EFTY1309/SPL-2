@@ -1,5 +1,6 @@
 .contact-us {
     margin-top: 80px;
+    margin-bottom: 40px;
     max-width: 100%;
     display: flex;
     justify-content: center;
@@ -56,10 +57,12 @@
   
   .form-group input, .form-group textarea {
     width: 100%;
+    height: auto;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
+    color: #333;
   }
   
   .form-group textarea {
