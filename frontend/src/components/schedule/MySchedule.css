@@ -1,0 +1,46 @@
+.my-schedule {
+    margin-top: 80px;
+    margin-bottom: 40px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  .my-schedule-container {
+    width: 80%;
+    max-width: 800px;
+    padding: 40px;
+    background: #e1f5f8;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .my-schedule h1 {
+    text-align: center;
+    color: #080034;
+    margin-bottom: 20px;
+  }
+  
+  .schedule-list {
+    margin-top: 20px;
+  }
+  
+  .schedule-item {
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .schedule-item h2 {
+    color: #080034;
+  }
+  
+  .schedule-item p {
+    color: #555;
+    margin: 5px 0;
+  }
+  

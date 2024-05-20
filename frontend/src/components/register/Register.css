@@ -1,102 +1,101 @@
-.App {
-    margin-top: 80px;
-}
-
-.registration-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-.registration-button button {
-    margin: 10px;
-    height: 40px;
-    width: 50%;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 5px;
-    color: #fff;
-    background-color: #080034;
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.registration-button button:hover {
-    background-color: #0a662b;
-}
-
-.swimmer-registration {
+.signup {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    background-color: #fff;
-    color: #080034;
-    height: auto;
-    width: 400px;
-    margin: 0 auto; 
-    border: 1px solid #080034;
-    padding: 20px;
+    align-items: center;
+    width: 100%;
+    min-height: 170vh;
+  }
+  
+  .signup-container {
+    width: 80%;
+    max-width: 500px;
+    padding: 40px;
+    background: #e1f5f8;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.swimmer-registration h2 {
-    color: #080034;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     text-align: center;
+  }
+  
+  .signup-container h1 {
     margin-bottom: 20px;
-}
-
-.swimmer-registration label {
     color: #080034;
-    text-align: start;
-    margin-bottom: 5px;
-}
-
-.swimmer-registration select, .swimmer-registration input, .swimmer-registration select option {
+    font-size: 24px;
+  }
+  
+  .signup-fields {
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .signup-fields label {
+    margin-top: 20px;
+  }
+  
+  .signup-fields label,
+  .signup-fields input,
+  .signup-fields select,
+  .signup-fields select option {
+    display: block;
+    width: 100%;
     color: #080034;
-    text-align: start;
-}
-
-.swimmer-registration input[type="text"],
-.swimmer-registration input[type="email"],
-.swimmer-registration input[type="password"],
-.swimmer-registration select {
-    width: 100%;
-    height: 30px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
-
-.swimmer-registration input[type="date"] {
-    width: 100%;
-    height: 30px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
-
-.submit {
+    text-align: left;
+  }
+  
+  .signup-fields input,
+  .signup-fields select {
     height: 40px;
-    width: 40%;
-    font-size: 18px;
-    margin: 10px auto;
+    width: calc(100% - 10px);
+    border: 1px solid #c9c9c9;
+    outline: none;
+    font-size: 16px;
     border-radius: 5px;
-    cursor: pointer;
-    background-color: #080034;
-    color: #fff;
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .password-input {
+    position: relative;
+  }
+
+  .password-toggle, .confirm-password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    height: calc(100% - 3px);
+    border-radius: 0 4px 4px 0;
+    transform: translateY(-50%);
+    background: #c8c8c8;
     border: none;
-    transition: all 0.3s ease;
-    display: block; /* Ensures the button is displayed as a block element */
-}
-
-
-.submit:hover {
-    background-color: #0a662b;
-}
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .password-toggle svg, .confirm-password-toggle svg {
+    color: #000000;
+    height: calc(100% - 15px);
+    width: auto;
+  }
+  
+  .login-link {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  
+  .login-link span {
+    color: #5c5c5c;
+  }
+  
+  .login-link a {
+    color: #080034;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .signup-btn {
+    font-size: 18px;
+  }
+  

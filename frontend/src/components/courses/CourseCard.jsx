@@ -12,7 +12,7 @@ const CourseCard = ({ className, imageSrc, title, description, buttonText, butto
         <div className="left-box-courses">
           <h1>{title}</h1>
           <p>{description}</p>
-          <Button1 text={buttonText} to={buttonLink}/> 
+          <Button1 text={buttonText} to={buttonLink} className="course-btn" /> 
         </div>
         <div className="right-box-courses">
           <img

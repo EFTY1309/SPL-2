@@ -54,21 +54,21 @@
 .dashboard-container {
   margin-top: 80px;
   margin-bottom: 40px;
-  max-width: 1200px;
-  padding: 0 20px;
+  max-width: 100%;
 }
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+  /* padding: 0 80px; */
 }
 
 .dashboard-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #ffffff;
+  background-color: #e1f5f8;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 30px;

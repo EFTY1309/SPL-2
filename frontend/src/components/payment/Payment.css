@@ -1,0 +1,92 @@
+.payment-page {
+    margin-top: 80px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    border-radius: 10px;
+    background-color: transparent;
+  }
+  
+  .payment-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px;
+    background: #e1f5f8;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .payment-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #080034;
+  }
+  
+  .payment-section {
+    margin-bottom: 40px;
+  }
+  
+  .payment-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #080034;
+  }
+  
+  .payment-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .payment-section li {
+    background: #B4E8EF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+  }
+  
+  .payment-section li:hover {
+    transform: scale(1.02);
+  }
+  
+  .payment-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .course-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #080034;
+  }
+  
+  .amount {
+    color: #080034;
+    margin-bottom: 5px;
+  }
+  
+  .due-date,
+  .date {
+    color: #555;
+  }
+  
+  .pay-now-btn {
+    background: #e60023;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .pay-now-btn:hover {
+    background: #c4001e;
+  }
+  

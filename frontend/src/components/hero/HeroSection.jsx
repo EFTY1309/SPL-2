@@ -70,7 +70,7 @@ const HeroSection = () => {
       <div className="hero-section-3">
         <div className="overlay">
           <div className="left-box-gallery">
-            <Button1 text="Gallery" to="/signin"/> 
+            <Button1 text="Gallery" to="/gallery"/> 
           </div>
           <div className="glass-box">
             <h3>
