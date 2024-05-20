@@ -19,9 +19,8 @@
 }
 
 .about-us-box {
-  background: #B4E8EF;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   backdrop-filter: blur(3.7px);
   -webkit-backdrop-filter: blur(9.7px);
@@ -63,8 +62,9 @@
 }
 
 .contact a {
-  color: #080034;
+  color: blue;
   text-decoration: none;
+  font-size: 16px;
 }
 
 .contact a:hover {
