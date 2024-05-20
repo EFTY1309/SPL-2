@@ -27,17 +27,17 @@ const Dashboard = () => {
             <div className="dashboard-card">
               <h2 className="dashboard-card-heading">My Schedule</h2>
               <p className="dashboard-card-description">See your swimming schedule</p>
-              <Button2 text="View Schedule" to="/schedule" />
+              <Button2 text="View Schedule" to="/my-schedule" />
             </div>
             <div className="dashboard-card">
               <h2 className="dashboard-card-heading">My Courses</h2>
               <p className="dashboard-card-description">See your enrolled courses and add new courses</p>
-              <Button2 text="View Courses" to="/yourcourses" />
+              <Button2 text="View Courses" to="/my-courses" />
             </div>
             <div className="dashboard-card">
               <h2 className="dashboard-card-heading">Swimming Lessons</h2>
               <p className="dashboard-card-description">See swimming lessons for your enrolled courses</p>
-              <Button2 text="View Lessons" to="/lessons" />
+              <Button2 text="View Lessons" to="/swimming-lessons" />
             </div>
             <div className="dashboard-card">
               <h2 className="dashboard-card-heading">Events</h2>

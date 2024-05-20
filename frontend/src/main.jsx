@@ -3,6 +3,10 @@ import ReactDOM from "react-dom/client";
 import './App.css'; 
 import App from "./App.jsx";
 import "@fortawesome/fontawesome-free/css/all.css";
+/* slick-carousel styles */
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 import Courses from "./pages/CoursesPage.jsx";
 import SignIn from "./pages/SignInPage.jsx";
@@ -12,6 +16,10 @@ import Profile from "./pages/ProfilePage.jsx";
 import UpdateProfile from "./pages/UpdateProfilePage.jsx";
 import ContactUs from "./pages/ContactUsPage.jsx";
 import AboutUs from "./pages/AboutUsPage.jsx";
+import MySchedule from "./pages/MySchedulePage.jsx";
+import MyCourses from "./pages/MyCoursesPage.jsx";
+import SwimmingLessons from "./pages/SwimmingLessonsPage.jsx";
+import Events from "./pages/EventsPage.jsx";
 
 
 import {
@@ -57,6 +65,22 @@ const router = createBrowserRouter([
   {
     path: "about",
     element: <AboutUs />,
+  },
+  {
+    path: "my-schedule",
+    element: <MySchedule />,
+  },
+  {
+    path: "my-courses",
+    element: <MyCourses />,
+  },
+  {
+    path: "swimming-lessons",
+    element: <SwimmingLessons />,
+  },
+  {
+    path: "events",
+    element: <Events />,
   },
 ]);
 

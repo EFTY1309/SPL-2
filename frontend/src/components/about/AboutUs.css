@@ -81,11 +81,11 @@
   color: #555;
 }
 
-.contact-us a {
+.contact a {
   color: #78d5e3;
   text-decoration: none;
 }
 
-.contact-us a:hover {
+.contact a:hover {
   text-decoration: underline;
 }

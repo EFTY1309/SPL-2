@@ -47,7 +47,7 @@ const AboutUs = () => {
           </div>
         </section>
 
-        <section className="contact-us">
+        <section className="contact">
           <h2>Contact Us</h2>
           <p>If you have any questions or would like to learn more about our services, please feel free to <a href="/contact">contact us</a>.</p>
         </section>
