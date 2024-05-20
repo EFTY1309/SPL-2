@@ -12,6 +12,7 @@
     width: 100%;
     max-width: 1200px;
     padding: 40px;
+    padding-top: 20px;
     background: #e1f5f8;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -19,20 +20,20 @@
   }
   
   .schedule-container h1 {
-    color: #080034;
+    color: #5e5e5e;
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 28px;
   }
   
   .schedule-image-container {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   
   .schedule-image {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
   
   .download-buttons {
@@ -40,18 +41,5 @@
     justify-content: center;
     gap: 20px;
   }
-  
-  .download-btn {
-    background: #e60023;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .download-btn:hover {
-    background: #c4001e;
-  }
+
   

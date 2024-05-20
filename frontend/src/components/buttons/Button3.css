@@ -1,0 +1,13 @@
+.btn-3 {
+    background: #e60023;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-3:hover {
+    background: #c4001e;
+  }

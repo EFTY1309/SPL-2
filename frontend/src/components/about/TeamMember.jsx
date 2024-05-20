@@ -3,11 +3,12 @@ import './TeamMember.css';
 
 const TeamMember = ({ name, position, bio }) => {
   return (
-    <div className="team-member">
-      <div className="member-info">
+    <div className="team-member-card">
+      <img src={`../../../public/images/${name.toLowerCase().replace(' ', '-')}.jpg`} alt={name} className="team-member-img" />
+      <div className="team-member-info">
         <h3>{name}</h3>
-        <p><strong>{position}</strong></p>
-        <p>{bio}</p>
+        <p className="team-member-position">{position}</p>
+        <p className="team-member-bio">{bio}</p>
       </div>
     </div>
   );

@@ -1,88 +1,69 @@
 .about-us {
   margin-top: 80px;
   margin-bottom: 40px;
-  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-  font-family: Arial, sans-serif;
-  color: #333;
+  background-color: transparent;
 }
 
 .about-us-container {
-  width: 80%;
-  max-width: 800px;
+  width: calc(100% - 80px);
+  max-width: 1200px;
   padding: 40px;
+  padding-bottom: 20px;
   background: #e1f5f8;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-.about-us h1,
-.about-us h2 {
-  text-align: center;
-  color: #080034;
+.about-us-box {
+  background: #B4E8EF;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  backdrop-filter: blur(3.7px);
+  -webkit-backdrop-filter: blur(9.7px);
+  padding: 20px;
   margin-bottom: 20px;
 }
 
-.about-us-intro,
-.our-mission,
-.our-history,
-.services-offered,
-.meet-the-team,
-.contact-us {
-  margin-bottom: 40px;
+.about-us-box h2 {
+  text-align: center;
+  color: #080034;
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
-.about-us-intro p,
-.our-mission p,
-.our-history p,
-.services-offered ul,
-.team-members,
-.contact-us p {
-  text-align: justify;
+.about-us-box p, 
+.about-us-box ul {
+  text-align: center;
   line-height: 1.6;
-}
-
-.services-offered ul {
-  list-style: disc;
-  padding-left: 20px;
-  margin: 0;
-}
-
-.team-members {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.team-member {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.team-member img {
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
-}
-
-.team-member h3 {
-  margin: 10px 0 5px 0;
-  color: #080034;
-}
-
-.team-member p {
-  margin: 0;
   color: #555;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.about-us-box ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.about-us-box ul li {
+  color: #555;
+  font-size: 18px;
+}
+
+.carousel .react-multi-carousel-item {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
 .contact a {
-  color: #78d5e3;
+  color: #080034;
   text-decoration: none;
 }
 
