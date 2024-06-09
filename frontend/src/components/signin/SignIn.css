@@ -1,0 +1,121 @@
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  .login-container {
+    width: 80%;
+    max-width: 500px;
+    padding: 40px;
+    background: #e1f5f8;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    /* border: 1px solid #080034; */
+    text-align: center;
+  }
+  
+  .login-container h1 {
+    margin-bottom: 20px;
+    color: #080034;
+    font-size: 24px;
+  }
+  
+  .login-fields {
+    margin-top: 30px;
+  }
+
+  .login-fields label {
+    margin-top: 20px;
+  }
+  
+  .login-fields label,
+  .login-fields input {
+    display: block;
+    width: 100%;
+    color: #080034;
+    text-align: left;
+  }
+  
+  .login-fields input {
+    height: 40px;
+    width: calc(100% - 10px);
+    border: 1px solid #c9c9c9;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .password-input {
+    position: relative;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    height: calc(100% - 3px);
+    border-radius: 0 4px 4px 0;
+    transform: translateY(-50%);
+    background: #c8c8c8;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .password-toggle svg {
+    color: #000000;
+    height: calc(100% - 15px);
+    width: auto;
+  }
+  
+  
+  .forgot-password {
+    text-align: right;
+    margin-bottom: 40px;
+  }
+
+  .forgot-password a {
+    font-size: 16px;
+    color: #5c5c5c;
+  }
+
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  
+  .signup-link {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  
+  .signup-link span {
+    color: #5c5c5c;
+  }
+  
+  .signup-link a {
+    color: #080034;
+    text-decoration: none;
+  }
+  
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
+
+  .signin-btn {
+    width: 40%; /* Adjust width to fit the container */
+    height: 50px; /* Adjust height as needed */
+    font-size: 18px; /* Adjust text size as needed */
+    margin-top: 10px; /* Add spacing at the top */
+    background-color: #080034;
+    color: white;
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Add border radius */
+    cursor: pointer; /* Add pointer cursor */
+  }
+  

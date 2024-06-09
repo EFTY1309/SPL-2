@@ -1,0 +1,66 @@
+/* Ensure the text color is black */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"],
+select,
+label {
+  color: black; /* Set the text color to black */
+}
+
+/* Center the form and style it */
+.swimmer-registration {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  height: auto; /* Adjust height to fit content */
+  width: 400px; /* Set the width of the div */
+  margin: 0 auto;
+  border: 1px solid #080034;
+  padding: 20px; /* Add padding for better spacing */
+  box-sizing: border-box;
+}
+
+/* Style the submit button */
+.submit {
+  width: 30%; /* Adjust width to fit the container */
+  height: 50px; /* Adjust height as needed */
+  font-size: 18px; /* Adjust text size as needed */
+  margin-top: 10px; /* Add spacing at the top */
+  background-color: #080034;
+  color: white;
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Add border radius */
+  cursor: pointer; /* Add pointer cursor */
+}
+
+/* Additional styling for the form fields */
+.swimmer-registration input,
+.swimmer-registration select {
+  width: 100%; /* Set width to fill the container */
+  padding: 10px; /* Add padding for better spacing */
+  margin-bottom: 10px; /* Add spacing between fields */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 5px; /* Add border radius */
+  box-sizing: border-box; /* Ensure padding and border are included in width and height */
+}
+
+.swimmer-registration label {
+  margin-bottom: 5px; /* Add spacing below labels */
+}
+
+/* Styling for the container and title */
+.App {
+  text-align: center; /* Center the title */
+  margin-top: 50px; /* Add spacing at the top */
+}
+
+.App h1 {
+  margin-bottom: 20px; /* Add spacing below the main title */
+}
+
+.swimmer-registration h2 {
+  margin-bottom: 20px; /* Add spacing below the form title */
+  color: #080034; /* Set form title color */
+}

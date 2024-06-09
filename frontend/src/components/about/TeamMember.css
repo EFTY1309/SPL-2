@@ -1,0 +1,25 @@
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .member-info {
+    max-width: 300px;
+  }
+  
+  .member-info h3 {
+    margin-bottom: 5px;
+    color: #080034;
+  }
+  
+  .member-info p {
+    margin-bottom: 5px;
+  }
+  
+  .member-info strong {
+    color: #78d5e3;
+  }
+  
