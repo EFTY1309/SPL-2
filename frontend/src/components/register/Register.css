@@ -64,3 +64,12 @@ label {
   margin-bottom: 20px; /* Add spacing below the form title */
   color: #080034; /* Set form title color */
 }
+.swimmer-category{
+  color: black;
+}
+.select-course{
+  color: black;
+}
+.option{
+  color: black;
+}

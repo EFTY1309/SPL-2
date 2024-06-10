@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SignIn.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button2 from '../buttons/Button2';
 
 const SignIn = () => {
@@ -10,6 +10,8 @@ const SignIn = () => {
     password: '',
     showPassword: false,
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,7 +38,7 @@ const SignIn = () => {
 
     if (responseData.success) {
       localStorage.setItem('auth-token', responseData.token);
-      window.location.replace('/dashboard');
+      navigate('/dashboard');
     } else {
       alert(responseData.errors);
     }
@@ -56,7 +58,8 @@ const SignIn = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="password">Password
+          <label htmlFor="password">
+            Password
             <div className="password-input">
               <input
                 type={formData.showPassword ? 'text' : 'password'}
@@ -71,7 +74,7 @@ const SignIn = () => {
                 className="password-toggle"
                 onClick={togglePasswordVisibility}
               >
-              {formData.showPassword ? <FaEye /> : <FaEyeSlash />}
+                {formData.showPassword ? <FaEye /> : <FaEyeSlash />}
               </button>
             </div>
           </label>
@@ -81,7 +84,7 @@ const SignIn = () => {
           <Link to="/forgot-password">Forgot your password?</Link>
         </div>
 
-        <button onClick={login} className='signin-btn' >Sign In</button>
+        <button onClick={login} className='signin-btn'>Sign In</button>
 
         <div className="signup-link">
           <span>Don't have an account? </span>
@@ -93,6 +96,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
-
-
