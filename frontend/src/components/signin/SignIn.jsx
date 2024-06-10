@@ -23,7 +23,7 @@ const SignIn = () => {
 
   const login = async () => {
     console.log('Login function executed', formData);
-
+  
     let responseData;
     await fetch('http://localhost:4003/login', {
       method: 'POST',
@@ -31,11 +31,11 @@ const SignIn = () => {
         Accept: 'application/form-data',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ email: formData.email, password: formData.password }),
     })
       .then((response) => response.json())
       .then((data) => (responseData = data));
-
+  
     if (responseData.success) {
       localStorage.setItem('auth-token', responseData.token);
       navigate('/dashboard');
@@ -43,6 +43,7 @@ const SignIn = () => {
       alert(responseData.errors);
     }
   };
+  
 
   return (
     <div className="login">

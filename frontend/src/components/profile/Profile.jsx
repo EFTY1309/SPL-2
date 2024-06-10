@@ -7,7 +7,7 @@ const Profile = () => {
   const [userData, setUserData] = useState({
     name: '',
     email: '',
-    number: '', // Ensure this matches the backend
+    phone: '', // Ensure this matches the backend
     dob: '',
   });
 
@@ -47,7 +47,7 @@ const Profile = () => {
           <div className="profile-item">
             <FaPhone className="profile-icon" />
             <span className="profile-label">Phone:</span>
-            <span className="profile-value">{userData.number || 'Not provided'}</span>
+            <span className="profile-value">{userData.phone || 'Not provided'}</span>
           </div>
           <div className="profile-item">
             <FaCalendarAlt className="profile-icon" />

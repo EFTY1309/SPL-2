@@ -12,7 +12,7 @@ const Register = () => {
     dob: "",
     registrationNumber: "",
     password: "",
-    courses: [] // Added courses field
+    courses: []
   });
 
   const navigate = useNavigate();
@@ -35,6 +35,8 @@ const Register = () => {
 
   const signup = async () => {
     try {
+      console.log('Sending swimmer data:', swimmerData); // Log data being sent
+
       const response = await fetch('http://localhost:4003/register', {
         method: 'POST',
         headers: {
@@ -45,6 +47,7 @@ const Register = () => {
       });
 
       const responseData = await response.json();
+      console.log('Response data:', responseData); // Log response data
 
       if (response.ok) {
         navigate('/signin', { state: { user: responseData.user } });
@@ -69,7 +72,8 @@ const Register = () => {
         <label htmlFor="swimmerNumber">Number</label><br/>
         <input type="text" value={swimmerData.number} id="swimmerNumber" name="number" onChange={handleInputChange} required /><br/>
         <label htmlFor="swimmerCategory">Select a swimmer category:</label><br/>
-        <select id="swimmerCategory" name="category" value={swimmerData.category} onChange={handleInputChange}  required>
+        <select id="swimmerCategory" name="category" value={swimmerData.category} onChange={handleInputChange} required>
+          <option className='option' value="">Select Category</option>
           <option className='option' value="Dhaka University Student">Dhaka University Student</option>
           <option className='option' value="DU Teacher/Officer/Employee/Their Family Member">DU Teacher/Officer/Employee/Their Family Member</option>
           <option className='option' value="BUET/DMC Student">BUET/DMC Student</option>

@@ -82,32 +82,36 @@ const authMiddleware = (req, res, next) => {
 app.post('/register', async (req, res) => {
   console.log('Request body:', req.body);
   try {
-    let check = await User.findOne({ email: req.body.email });
+    const { name, email, password, number, category, dob, registrationNumber, courses } = req.body;
+
+    // Check for missing fields
+    if (!name || !email || !password || !number || !category || !dob || !registrationNumber || !Array.isArray(courses) || courses.length === 0) {
+      return res.status(400).json({ success: false, errors: 'All fields are required and courses should be a non-empty array' });
+    }
+
+    let check = await User.findOne({ email });
     if (check) {
       return res.status(400).json({ success: false, errors: 'Existing user found with the same email id' });
     }
+
     let cart = {};
     for (let i = 0; i < 300; i++) {
       cart[i] = 0;
     }
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    // Validate if courses is an array and not empty
-    if (!Array.isArray(req.body.courses) || req.body.courses.length === 0) {
-      return res.status(400).json({ success: false, errors: 'Courses should be a non-empty array' });
-    }
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
-      name: req.body.name,
-      email: req.body.email,
+      name,
+      email,
       password: hashedPassword,
-      phone: req.body.number,
+      phone: number,
       professionalPosition: req.body.professionalPosition,
       cartData: cart,
-      category: req.body.category,
-      dob: req.body.dob,
-      registrationNumber: req.body.registrationNumber,
-      courses: req.body.courses,
+      category,
+      dob,
+      registrationNumber,
+      courses,
     });
 
     await user.save();
@@ -123,30 +127,35 @@ app.post('/register', async (req, res) => {
     const token = jwt.sign(data, 'secret_ecom');
     res.json({ success: true, token, user });
   } catch (error) {
-    console.error('Error during registration:', error);
+    console.error('Error during registration:', error.message);
     res.status(500).json({ success: false, errors: 'Internal server error' });
   }
 });
 
 app.post('/login', async (req, res) => {
-  let user = await User.findOne({ email: req.body.email });
+  try {
+    let user = await User.findOne({ email: req.body.email });
 
-  if (user) {
-    const passCompare = await bcrypt.compare(req.body.password, user.password);
+    if (user) {
+      const passCompare = await bcrypt.compare(req.body.password, user.password);
 
-    if (passCompare) {
-      const data = {
-        user: {
-          id: user.id,
-        },
-      };
-      const token = jwt.sign(data, 'secret_ecom');
-      res.json({ success: true, token, user });
+      if (passCompare) {
+        const data = {
+          user: {
+            id: user.id,
+          },
+        };
+        const token = jwt.sign(data, 'secret_ecom');
+        res.json({ success: true, token, user });
+      } else {
+        res.status(400).json({ success: false, errors: 'Wrong Password' });
+      }
     } else {
-      res.json({ success: false, errors: 'Wrong Password' });
+      res.status(400).json({ success: false, errors: 'Wrong Email Id' });
     }
-  } else {
-    res.json({ success: false, errors: 'Wrong Email Id' });
+  } catch (error) {
+    console.error('Error during login:', error.message);
+    res.status(500).json({ success: false, errors: 'Internal server error' });
   }
 });
 
@@ -156,6 +165,16 @@ app.get('/profile', authMiddleware, async (req, res) => {
     res.json(user);
   } catch (error) {
     console.error('Error fetching profile:', error);
+    res.status(500).json({ success: false, errors: 'Internal server error' });
+  }
+});
+
+app.get('/user-courses', authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('courses');
+    res.json(user.courses);
+  } catch (error) {
+    console.error('Error fetching courses:', error);
     res.status(500).json({ success: false, errors: 'Internal server error' });
   }
 });
