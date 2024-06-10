@@ -36,6 +36,24 @@ const MyCourses = () => {
     fetchCourses();
   }, []);
 
+  const onSubmit = (course) => {
+    console.log(course);
+
+    fetch("http://localhost:4003/order", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "x-auth-token": localStorage.getItem('auth-token'), // Include the auth token here
+      },
+      body: JSON.stringify({ course }), // Send as an object
+    })
+    .then((res) => res.json())
+    .then((result) =>{
+      window.location.replace(result.url);
+      console.log(result);
+    })
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -56,6 +74,7 @@ const MyCourses = () => {
                     <h2 className='cs'>{course}</h2>
                     <p className='cs'>Price: {details.price}</p>
                     <p className='cs'>Duration: {details.duration}</p>
+                    <button className='cs' onClick={() => onSubmit(course)}>Pay Now</button>
                   </div>
                 </li>
               );

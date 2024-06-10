@@ -1,5 +1,14 @@
 const port = 4003;
 const express = require("express");
+const SSLCommerzPayment = require('sslcommerz-lts');
+const { Types: { ObjectId } } = require('mongoose'); // Updated import statement
+
+require('dotenv').config();
+
+const store_id = process.env.STORE_ID;
+const store_passwd = process.env.STORE_PASSWORD;
+const is_live = false; // true for live, false for sandbox
+
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -84,7 +93,6 @@ app.post('/register', async (req, res) => {
   try {
     const { name, email, password, number, category, dob, registrationNumber, courses } = req.body;
 
-    // Check for missing fields
     if (!name || !email || !password || !number || !category || !dob || !registrationNumber || !Array.isArray(courses) || courses.length === 0) {
       return res.status(400).json({ success: false, errors: 'All fields are required and courses should be a non-empty array' });
     }
@@ -177,6 +185,68 @@ app.get('/user-courses', authMiddleware, async (req, res) => {
     console.error('Error fetching courses:', error);
     res.status(500).json({ success: false, errors: 'Internal server error' });
   }
+});
+
+//const trans_id = new ObjectId().toString();
+
+app.post('/order', authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
+    console.log(user);
+
+    // Generate a unique transaction ID
+    const trans_id = new ObjectId().toString();
+
+    const data = {
+      total_amount: 100,
+      currency: 'BDT',
+      tran_id: trans_id,
+      success_url: `http://localhost:4003/payment/success/${trans_id}`,
+      fail_url: 'http://localhost:3030/fail',
+      cancel_url: 'http://localhost:3030/cancel',
+      ipn_url: 'http://localhost:3030/ipn',
+      shipping_method: 'Courier',
+      product_name: 'Computer.',
+      product_category: 'Electronic',
+      product_profile: 'general',
+      cus_name: user.name,
+      cus_email: user.email,
+      cus_add1: 'Dhaka',
+      cus_add2: 'Dhaka',
+      cus_city: 'Dhaka',
+      cus_state: 'Dhaka',
+      cus_postcode: '1000',
+      cus_country: 'Bangladesh',
+      cus_phone: '01711111111',
+      cus_fax: '01711111111',
+      ship_name: user.name,
+      ship_add1: 'Dhaka',
+      ship_add2: 'Dhaka',
+      ship_city: 'Dhaka',
+      ship_state: 'Dhaka',
+      ship_postcode: 1000,
+      ship_country: 'Bangladesh',
+    };
+
+    const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
+    sslcz.init(data).then(apiResponse => {
+      let GatewayPageURL = apiResponse.GatewayPageURL;
+      res.send({ url: GatewayPageURL });
+      console.log('Redirecting to: ', GatewayPageURL);
+    });
+  } catch (error) {
+    console.error('Error creating order:', error);
+    res.status(500).json({ success: false, error: 'Internal server error' });
+  }
+});
+
+app.post("/payment/success/:tran_id", async (req, res) => {
+  console.log(req.params.tran_id);
 });
 
 app.listen(port, (error) => {
