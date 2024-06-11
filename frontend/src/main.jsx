@@ -29,6 +29,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import PaymentSuccess from "./components/payment/PaymentSuccess.jsx";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
   {
     path: "payment",
     element: <Payment />,
+  },
+  {
+    path: "payment-success",
+    element: <PaymentSuccess />,
   },
 ]);
 

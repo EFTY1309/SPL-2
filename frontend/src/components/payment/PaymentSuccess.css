@@ -1,0 +1,23 @@
+/* Ensure the body and html take up full height and have a black background */
+
+  
+  /* Style for the payment success container */
+  .payment-success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    height: 100vh; /* Make sure it takes up the full viewport height */
+    text-align: center;
+  }
+  
+  .payment-success-container h1 {
+    color: white;
+    font-size: 2em; /* Increase the font size for the header */
+  }
+  
+  .payment-success-container p {
+    font-size: 18px;
+    color: white; /* Ensure the paragraph text is white */
+  }
+  

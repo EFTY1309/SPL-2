@@ -10,9 +10,9 @@ const MyCourses = () => {
   });
 
   const courseDetails = {
-    "Butterfly": { price: "$50", duration: "3 months" },
-    "Backstroke": { price: "$45", duration: "2 months" },
-    "Freestyle": { price: "$40", duration: "2 months" },
+    "Butterfly": { price: 2000, duration: "3 months" },
+    "Backstroke": { price: 3000, duration: "2 months" },
+    "Freestyle": { price: 1000, duration: "2 months" },
     // Add other course details as needed
   };
 
@@ -75,8 +75,13 @@ const MyCourses = () => {
     fetchCourses();
   }, []);
 
-  const onSubmit = (course) => {
-    console.log(course);
+  const onSubmit = () => {
+    const totalAmount = courses.reduce((total, course) => {
+      const details = courseDetails[course] || { price: 0 };
+      return total + details.price;
+    }, 0);
+
+    console.log("Total Amount:", totalAmount);
 
     const token = localStorage.getItem('auth-token');
     if (!token) {
@@ -85,7 +90,7 @@ const MyCourses = () => {
     }
 
     const paymentData = {
-      course,
+      total_amount: totalAmount,
       user: userData
     };
 
@@ -133,15 +138,15 @@ const MyCourses = () => {
                 <li className='course-item' key={index}>
                   <div className='course-details'>
                     <h2 className='cs'>{course}</h2>
-                    <p className='cs'>Price: {details.price}</p>
+                    <p className='cs'>Price: {details.price} BDT</p>
                     <p className='cs'>Duration: {details.duration}</p>
-                    <button className='cs' onClick={() => onSubmit(course)}>Pay Now</button>
                   </div>
                 </li>
               );
             })}
           </ul>
         )}
+        {courses.length > 0 && <button className='cs' onClick={onSubmit}>Pay Now</button>}
       </div>
     </div>
   );
