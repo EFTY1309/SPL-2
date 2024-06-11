@@ -7,7 +7,7 @@ const Profile = () => {
   const [userData, setUserData] = useState({
     name: '',
     email: '',
-    phone: '', // Ensure this matches the backend
+    phone: '',
     dob: '',
   });
 
@@ -27,35 +27,31 @@ const Profile = () => {
     fetchProfile();
   }, []);
 
- 
-
-   return (
-    <div className="profile-container">
-      <div className="profile-card">
+  return (
+    <div className="profile">
+      <div className="profile-container">
         <h1>Profile</h1>
         <div className="profile-info">
-          <div className="profile-item">
-            <FaUser className="profile-icon" />
-            <span className="profile-label">Name:</span>
-            <span className="profile-value">{userData.name}</span>
-          </div>
-          <div className="profile-item">
-            <FaEnvelope className="profile-icon" />
-            <span className="profile-label">Email:</span>
-            <span className="profile-value">{userData.email}</span>
-          </div>
-          <div className="profile-item">
-            <FaPhone className="profile-icon" />
-            <span className="profile-label">Phone:</span>
-            <span className="profile-value">{userData.phone || 'Not provided'}</span>
-          </div>
-          <div className="profile-item">
-            <FaCalendarAlt className="profile-icon" />
-            <span className="profile-label">DOB:</span>
-            <span className="profile-value">{new Date(userData.dob).toLocaleDateString()}</span>
-          </div>
+          <ProfileItem icon={<FaUser />} label="Name" value={userData.name} />
+          <ProfileItem icon={<FaEnvelope />} label="Email" value={userData.email} />
+          <ProfileItem icon={<FaPhone />} label="Phone" value={userData.phone || 'Not provided'} />
+          <ProfileItem icon={<FaCalendarAlt />} label="DOB" value={new Date(userData.dob).toLocaleDateString()} />
         </div>
-        <Button2 text="Edit Profile" to="/update-profile" />
+        <div className="btn-container">
+          <Button2 text="Edit Profile" to="/update-profile" className="update-profile-btn"/>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProfileItem = ({ icon, label, value }) => {
+  return (
+    <div className="profile-item">
+      <div className="icon">{icon}</div>
+      <div className="text">
+        <div className="label">{label}</div>
+        <div className="value">{value}</div>
       </div>
     </div>
   );

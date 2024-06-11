@@ -1,24 +1,25 @@
-.profile-container {
+.profile {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
-  background: linear-gradient(to bottom, #76b852, #8DC26F);
+  height: 110vh;
+ 
 }
 
-.profile-card {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.profile-container {
+  width: 80%;
   max-width: 500px;
-  width: 100%;
+  padding: 40px;
+  background: #e1f5f8;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   text-align: center;
 }
 
-.profile-card h1 {
+.profile h1 {
   margin-bottom: 20px;
-  color: #333;
+  color: #080034;
+  font-size: 24px;
 }
 
 .profile-info {
@@ -28,38 +29,31 @@
 .profile-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+  margin-bottom: 20px;
 }
 
-.profile-icon {
-  margin-right: 10px;
-  color: #333;
+.icon {
+  margin-right: 15px;
+  color: #080034;
 }
 
-.profile-label {
+.text {
+  width: calc(100% - 30px);
+}
+
+.label {
   font-weight: bold;
-  color: #555;
+  color: #080034;
 }
 
-.profile-value {
-  color: #777;
+.value {
+  color: #080034;
 }
 
-.edit-profile-btn {
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  margin-top: 20px;
-  background-color: #4CAF50;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 20px;
 }
-
-

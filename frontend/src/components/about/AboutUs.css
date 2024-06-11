@@ -17,6 +17,7 @@
   background: #e1f5f8;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  color: black;
 }
 
 .about-us h1,
@@ -33,6 +34,7 @@
 .meet-the-team,
 .contact-us {
   margin-bottom: 40px;
+  color: black;
 }
 
 .about-us-intro p,
@@ -88,4 +90,7 @@
 
 .contact a:hover {
   text-decoration: underline;
+}
+.color{
+  color: black;
 }

@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 
 const app = express();
 app.use(express.json());
@@ -228,7 +229,7 @@ app.post('/order', authMiddleware, async (req, res) => {
       }
   
       const trans_id = new ObjectId().toString();
-      const { total_amount, user: userDetails } = req.body;
+      const { total_amount, user: userDetails, course } = req.body;
   
       const data = {
         total_amount,
@@ -264,7 +265,7 @@ app.post('/order', authMiddleware, async (req, res) => {
       const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
       const apiResponse = await sslcz.init(data);
   
-      transactions[trans_id] = { total_amount, userDetails };
+      transactions[trans_id] = { total_amount, userDetails, course };
   
       return res.status(200).json({ success: true, url: apiResponse.GatewayPageURL });
     } catch (error) {
@@ -273,40 +274,69 @@ app.post('/order', authMiddleware, async (req, res) => {
     }
   });
   
+app.post('/payment/success/:tran_id', async (req, res) => {
+  try {
+    const transactionId = req.params.tran_id;
+    const paymentData = transactions[transactionId];
+    console.log("Transaction ID:", transactionId);
+    console.log("Payment Data:", paymentData);
 
-  app.post('/payment/success/:tran_id', async (req, res) => {
-    try {
-      const transactionId = req.params.tran_id;
-      const paymentData = transactions[transactionId];
-      console.log("Transaction ID:", transactionId);
-      console.log("Payment Data:", paymentData);
-  
-      if (!paymentData) {
-        return res.status(400).json({ success: false, error: "Invalid transaction ID or payment data not found" });
-      }
-  
-      const { userDetails, course } = paymentData;
-  
-      const registeredUser = new RegisteredUser({
-        name: userDetails.name,
-        email: userDetails.email,
-        category: userDetails.category,
-        courses: userDetails.courses,
-        tran_id: transactionId
-      });
-  
-      await registeredUser.save();
-  
-      delete transactions[transactionId];
-  
-      // Redirect to the frontend route with the transaction ID as a query parameter
-      res.redirect(`http://localhost:5173/payment-success?tran_id=${transactionId}`);
-    } catch (error) {
-      console.error("Error handling payment success:", error);
-      res.status(500).json({ success: false, error: "Internal server error" });
+    if (!paymentData) {
+      return res.status(400).json({ success: false, error: "Invalid transaction ID or payment data not found" });
     }
-  });
-  
+
+    const { userDetails, course } = paymentData;
+
+    // Add the single course to the courses array if it's not already present
+    let courses = userDetails.courses || [];
+    if (course && !courses.includes(course)) {
+      courses.push(course);
+    }
+
+    const registeredUser = new RegisteredUser({
+      name: userDetails.name,
+      email: userDetails.email,
+      category: userDetails.category,
+      courses: courses,
+      tran_id: transactionId
+    });
+
+    await registeredUser.save();
+
+    // Send email notification
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: userDetails.email,
+      subject: 'Course Enrollment Successful',
+      text: `Dear ${userDetails.name},\n\nYou have been successfully enrolled in the following courses:\n${courses.join(', ')}.\n\nThank you for choosing our platform!\n\nBest regards,\nYour Team`
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email:', error);
+      } else {
+        console.log('Email sent:', info.response);
+      }
+    });
+
+    // Remove transaction data from in-memory store after successful processing
+    delete transactions[transactionId];
+
+    // Redirect to the frontend route with the transaction ID as a query parameter
+    res.redirect(`http://localhost:5173/payment-success?tran_id=${transactionId}`);
+  } catch (error) {
+    console.error("Error handling payment success:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

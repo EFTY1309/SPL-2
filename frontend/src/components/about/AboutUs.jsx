@@ -8,33 +8,33 @@ const AboutUs = () => {
       <div className="about-us-container">
         <h1>About Us</h1>
         <section className="about-us-intro">
-          <p>
+          <p className='color'>
             Welcome to the Dhaka University Swimming Pool. Our facility is dedicated to providing a safe, clean, and enjoyable environment for swimmers of all ages and skill levels. Located in the heart of the Dhaka University campus, we offer a range of services to cater to the needs of our community.
           </p>
         </section>
 
         <section className="our-mission">
           <h2>Our Mission</h2>
-          <p>
+          <p className='color'>
             Our mission is to promote aquatic education and fitness through quality swim programs and services. We strive to inspire individuals to achieve their personal best in a supportive and inclusive environment.
           </p>
         </section>
 
         <section className="our-history">
           <h2>Our History</h2>
-          <p>
+          <p className='color'>
             Established in 1990, the Dhaka University Swimming Pool has been a cornerstone of aquatic sports in the region. Over the years, we have trained numerous athletes who have gone on to compete at national and international levels. Our commitment to excellence has made us a premier destination for swimming enthusiasts.
           </p>
         </section>
 
         <section className="services-offered">
-          <h2>Services Offered</h2>
-          <ul>
-            <li>Open Swim Sessions</li>
-            <li>Swimming Lessons for All Ages</li>
-            <li>Competitive Swim Training</li>
-            <li>Aqua Aerobics</li>
-            <li>Pool Rental for Events</li>
+          <h2 className='color'>Services Offered</h2>
+          <ul className='color'>
+            <li className='color'>Open Swim Sessions</li>
+            <li className='color'>Swimming Lessons for All Ages</li>
+            <li className='color'>Competitive Swim Training</li>
+            <li className='color'>Aqua Aerobics</li>
+            <li className='color'>Pool Rental for Events</li>
           </ul>
         </section>
 
