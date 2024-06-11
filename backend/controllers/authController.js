@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 exports.register = async (req, res) => {
+  console.log('Request body:', req.body);
   try {
     const { name, email, password, number, category, dob, registrationNumber, courses } = req.body;
 
@@ -37,6 +38,8 @@ exports.register = async (req, res) => {
 
     await user.save();
 
+    console.log('User saved:', user);
+
     const data = {
       user: {
         id: user.id,
@@ -51,7 +54,7 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+exports.signin = async (req, res) => {
   try {
     let user = await User.findOne({ email: req.body.email });
 
@@ -73,7 +76,7 @@ exports.login = async (req, res) => {
       res.status(400).json({ success: false, errors: 'Wrong Email Id' });
     }
   } catch (error) {
-    console.error('Error during login:', error.message);
+    console.error('Error during signin:', error.message);
     res.status(500).json({ success: false, errors: 'Internal server error' });
   }
 };

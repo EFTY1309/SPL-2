@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './Register.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button2 from '../buttons/Button2';
+import axios from 'axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,8 @@ const Register = () => {
     confirmPassword: '', // New state for confirm password
   });
 
+  const navigate = useNavigate(); // useNavigate instead of useHistory
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -29,14 +32,20 @@ const Register = () => {
     setFormData({ ...formData, showConfirmPassword: !formData.showConfirmPassword });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match. Please re-enter.');
       setFormData({ ...formData, password: '', confirmPassword: '' });
-      // Reset the passwords if they don't match
     } else {
-      console.log('Form submitted:', formData);
-      // Proceed with form submission
+      try {
+        const response = await axios.post('/api/auth/register', formData);
+        console.log('Form submitted:', response.data);
+        // Handle successful registration (e.g., redirect to login page)
+        navigate('/signin');
+      } catch (error) {
+        console.error('Error registering:', error);
+        alert('Registration failed. Please try again.');
+      }
     }
   };
 
@@ -81,12 +90,8 @@ const Register = () => {
             required
           >
             <option value="">Select Category</option>
-            <option value="Dhaka University Student">
-              Dhaka University Student
-            </option>
-            <option value="Sri LankaDU Teacher/Officer/Employee/Their Family Member">
-              DU Teacher/Officer/Employee/Their Family Member
-            </option>
+            <option value="Dhaka University Student">Dhaka University Student</option>
+            <option value="DU Teacher/Officer/Employee/Their Family Member">DU Teacher/Officer/Employee/Their Family Member</option>
             <option value="BUET/DMC Student">BUET/DMC Student</option>
             <option value="Associate Member">Associate Member</option>
             <option value="General Swimmer">General Swimmer</option>
@@ -100,9 +105,7 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="registrationNumber">
-            Registration Number for DU Students
-          </label>
+          <label htmlFor="registrationNumber">Registration Number for DU Students</label>
           <input
             type="text"
             id="registrationNumber"
@@ -111,44 +114,42 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="password">Password
+          <label htmlFor="password">Password</label>
           <div className="password-input">
-          <input
+            <input
               type={formData.showPassword ? 'text' : 'password'}
               value={formData.password}
               id="password"
               name="password"
               onChange={handleChange}
               required
-          />
-          <button
-            type="button"
-            className="password-toggle"
-            onClick={togglePasswordVisibility}
-          >
-          {formData.showPassword ? <FaEye /> : <FaEyeSlash />}
-          </button>
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={togglePasswordVisibility}
+            >
+              {formData.showPassword ? <FaEye /> : <FaEyeSlash />}
+            </button>
           </div>
-          </label>
-          <label htmlFor="confirmPassword">Confirm Password
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <div className="password-input">
-          <input
-            type={formData.showConfirmPassword ? 'text' : 'password'}
-            value={formData.confirmPassword}
-            id="confirmPassword"
-            name="confirmPassword"
-            onChange={handleChange}
-            required
-          />
-          <button
-            type="button"
-            className="confirm-password-toggle"
-            onClick={toggleConfirmPasswordVisibility}
-          >
-          {formData.showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
-          </button>
+            <input
+              type={formData.showConfirmPassword ? 'text' : 'password'}
+              value={formData.confirmPassword}
+              id="confirmPassword"
+              name="confirmPassword"
+              onChange={handleChange}
+              required
+            />
+            <button
+              type="button"
+              className="confirm-password-toggle"
+              onClick={toggleConfirmPasswordVisibility}
+            >
+              {formData.showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+            </button>
           </div>
-          </label>
         </div>
         <Button2 text="Submit" onClick={handleSubmit} className="signup-btn" />
         <div className="login-link">

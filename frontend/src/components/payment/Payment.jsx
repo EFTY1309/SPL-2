@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../api/axios';
 import './Payment.css';
 
 const Payment = () => {
@@ -14,7 +14,7 @@ const Payment = () => {
 
   const fetchDuePayments = async () => {
     try {
-      const response = await axios.get('/api/payments/due');
+      const response = await axios.get('/payments/due');
       if (Array.isArray(response.data)) {
         setDuePayments(response.data);
       } else {
@@ -28,7 +28,7 @@ const Payment = () => {
 
   const fetchPaymentHistory = async () => {
     try {
-      const response = await axios.get('/api/payments/history');
+      const response = await axios.get('/payments/history');
       if (Array.isArray(response.data)) {
         setPaymentHistory(response.data);
       } else {
@@ -42,7 +42,7 @@ const Payment = () => {
 
   const handlePayNow = async (paymentId) => {
     try {
-      const response = await axios.post(`/api/payments/pay/${paymentId}`);
+      const response = await axios.post(`/payments/pay/${paymentId}`);
       window.location.href = response.data.GatewayPageURL;
     } catch (error) {
       setError('Error initiating payment');
