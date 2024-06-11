@@ -1,16 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './Payment.css';
 
 const Payment = () => {
-  const duePayments = [
-    { course: 'Beginner Swimming', amount: '€50', dueDate: 'June 1, 2024' },
-    { course: 'Advanced Swimming', amount: '€70', dueDate: 'July 3, 2024' },
-  ];
+  const [duePayments, setDuePayments] = useState([]);
+  const [paymentHistory, setPaymentHistory] = useState([]);
+  const [error, setError] = useState(null);
 
-  const paymentHistory = [
-    { course: 'Intermediate Swimming', amount: '€60', date: 'May 1, 2024' },
-    { course: 'Family Fun Day', amount: '€40', date: 'April 20, 2024' },
-  ];
+  useEffect(() => {
+    fetchDuePayments();
+    fetchPaymentHistory();
+  }, []);
+
+  const fetchDuePayments = async () => {
+    try {
+      const response = await axios.get('/api/payments/due');
+      if (Array.isArray(response.data)) {
+        setDuePayments(response.data);
+      } else {
+        setError('Unexpected response format for due payments');
+      }
+    } catch (error) {
+      setError('Error fetching due payments');
+      console.error(error);
+    }
+  };
+
+  const fetchPaymentHistory = async () => {
+    try {
+      const response = await axios.get('/api/payments/history');
+      if (Array.isArray(response.data)) {
+        setPaymentHistory(response.data);
+      } else {
+        setError('Unexpected response format for payment history');
+      }
+    } catch (error) {
+      setError('Error fetching payment history');
+      console.error(error);
+    }
+  };
+
+  const handlePayNow = async (paymentId) => {
+    try {
+      const response = await axios.post(`/api/payments/pay/${paymentId}`);
+      window.location.href = response.data.GatewayPageURL;
+    } catch (error) {
+      setError('Error initiating payment');
+      console.error(error);
+    }
+  };
+
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
 
   return (
     <div className="payment-page">
@@ -18,32 +60,42 @@ const Payment = () => {
         <h1>Payment Overview</h1>
         <div className="payment-section">
           <h2>Due Payments</h2>
-          <ul>
-            {duePayments.map((payment, index) => (
-              <li key={index}>
-                <div className="payment-info">
-                  <span className="course-name">{payment.course}</span>
-                  <span className="amount">{payment.amount}</span>
-                  <span className="due-date">Due: {payment.dueDate}</span>
-                </div>
-                <button className="pay-now-btn">Pay Now</button>
-              </li>
-            ))}
-          </ul>
+          {duePayments.length > 0 ? (
+            <ul>
+              {duePayments.map((payment) => (
+                <li key={payment._id}>
+                  <div className="payment-info">
+                    <span className="course-name">{payment.course}</span>
+                    <span className="amount">€{payment.amount}</span>
+                    <span className="due-date">Due: {new Date(payment.dueDate).toLocaleDateString()}</span>
+                  </div>
+                  <button className="pay-now-btn" onClick={() => handlePayNow(payment._id)}>
+                    Pay Now
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No due payments found.</p>
+          )}
         </div>
         <div className="payment-section">
           <h2>Payment History</h2>
-          <ul>
-            {paymentHistory.map((payment, index) => (
-              <li key={index}>
-                <div className="payment-info">
-                  <span className="course-name">{payment.course}</span>
-                  <span className="amount">{payment.amount}</span>
-                  <span className="date">Paid: {payment.date}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+          {paymentHistory.length > 0 ? (
+            <ul>
+              {paymentHistory.map((payment) => (
+                <li key={payment._id}>
+                  <div className="payment-info">
+                    <span className="course-name">{payment.course}</span>
+                    <span className="amount">€{payment.amount}</span>
+                    <span className="date">Paid: {new Date(payment.paidDate).toLocaleDateString()}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No payment history found.</p>
+          )}
         </div>
       </div>
     </div>

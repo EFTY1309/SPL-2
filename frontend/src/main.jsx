@@ -22,6 +22,7 @@ import SwimmingLessons from "./pages/SwimmingLessonsPage.jsx";
 import Events from "./pages/EventsPage.jsx";
 import Payment from "./pages/PaymentPage.jsx";
 import Schedule from "./pages/SchedulePage.jsx";
+import PaymentSuccess from "./pages/PaymentSuccessPage.jsx";
 
 
 import {
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
   {
     path: "payment",
     element: <Payment />,
+  },
+  {
+    path: "payment/success",
+    element: <PaymentSuccess />
   },
   {
     path: "schedule",

@@ -1,0 +1,26 @@
+.success-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  .success-container {
+    background-color: #e1f5f8;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    text-align: center;
+    max-width: 600px;
+  }
+  
+  .success-container h1 {
+    color: #080034;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .success-container p {
+    color: #555;
+    margin-bottom: 10px;
+  }
