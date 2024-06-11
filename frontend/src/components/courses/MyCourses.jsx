@@ -4,6 +4,10 @@ import './MyCourses.css';
 const MyCourses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState({
+    name: '',
+    email: ''
+  });
 
   const courseDetails = {
     "Butterfly": { price: "$50", duration: "3 months" },
@@ -13,17 +17,51 @@ const MyCourses = () => {
   };
 
   useEffect(() => {
-    const fetchCourses = async () => {
+    const fetchProfile = async () => {
       try {
-        const response = await fetch('http://localhost:4003/user-courses', {
+        const token = localStorage.getItem('auth-token');
+        if (!token) {
+          throw new Error('No token found in local storage');
+        }
+
+        const response = await fetch('http://localhost:4003/profile', {
           method: 'GET',
           headers: {
-            'x-auth-token': localStorage.getItem('auth-token'),
+            'x-auth-token': token,
           },
         });
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const result = await response.json();
+        setUserData(result);
+        console.log('User Data:', result.email); // Debug line to ensure data is transferred
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    };
+
+    const fetchCourses = async () => {
+      try {
+        const token = localStorage.getItem('auth-token');
+        console.log('Auth token:', token); // Debug line
+        if (!token) {
+          throw new Error('No token found in local storage');
+        }
+
+        const response = await fetch('http://localhost:4003/user-courses', {
+          method: 'GET',
+          headers: {
+            'x-auth-token': token,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
         setCourses(data);
         setLoading(false);
@@ -33,25 +71,48 @@ const MyCourses = () => {
       }
     };
 
+    fetchProfile();
     fetchCourses();
   }, []);
 
   const onSubmit = (course) => {
     console.log(course);
 
+    const token = localStorage.getItem('auth-token');
+    if (!token) {
+      console.error('No auth token found, cannot proceed with payment');
+      return;
+    }
+
+    const paymentData = {
+      course,
+      user: userData
+    };
+
+    console.log("Payment Data:", paymentData); // Log the data being sent
+
     fetch("http://localhost:4003/order", {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
-        "x-auth-token": localStorage.getItem('auth-token'), // Include the auth token here
+        "x-auth-token": token, // Include the auth token here
       },
-      body: JSON.stringify({ course }), // Send as an object
+      body: JSON.stringify(paymentData), // Send user data with the request
     })
     .then((res) => res.json())
-    .then((result) =>{
-      window.location.replace(result.url);
+    .then((result) => {
+      const { url, trans_id, paymentData } = result;
+
+      // Store paymentData in local storage
+      localStorage.setItem(`paymentData_${trans_id}`, JSON.stringify(paymentData));
+
+      // Redirect to the payment gateway URL
+      window.location.replace(url);
       console.log(result);
     })
+    .catch((error) => {
+      console.error('Error processing payment:', error);
+    });
   };
 
   if (loading) {

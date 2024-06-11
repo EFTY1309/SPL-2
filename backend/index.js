@@ -1,14 +1,7 @@
-const port = 4003;
 const express = require("express");
 const SSLCommerzPayment = require('sslcommerz-lts');
-const { Types: { ObjectId } } = require('mongoose'); // Updated import statement
-
+const { Types: { ObjectId } } = require('mongoose');
 require('dotenv').config();
-
-const store_id = process.env.STORE_ID;
-const store_passwd = process.env.STORE_PASSWORD;
-const is_live = false; // true for live, false for sandbox
-
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -17,6 +10,11 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+const port = 4003;
+const store_id = process.env.STORE_ID;
+const store_passwd = process.env.STORE_PASSWORD;
+const is_live = false; // true for live, false for sandbox
 
 mongoose.connect("mongodb+srv://efty3222:nj3PG6GvAdRrqsYW@cluster0.nzlkviu.mongodb.net/SPL-2")
   .then(() => console.log("MongoDB connected"))
@@ -72,10 +70,27 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+const registeredUserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const User = mongoose.model('User', userSchema);
+const RegisteredUser = mongoose.model('RegisteredUser', registeredUserSchema);
 
 const authMiddleware = (req, res, next) => {
   const token = req.header('x-auth-token');
+  console.log('Received token:', token); // Debug line
   if (!token) {
     return res.status(401).json({ msg: 'No token, authorization denied' });
   }
@@ -187,72 +202,96 @@ app.get('/user-courses', authMiddleware, async (req, res) => {
   }
 });
 
-//const trans_id = new ObjectId().toString();
-
+// Apply authMiddleware to this route
 app.post('/order', authMiddleware, async (req, res) => {
-  try {
-    const userId = req.user.id;
-    const user = await User.findById(userId);
-
-    if (!user) {
-      return res.status(404).json({ success: false, error: 'User not found' });
+    try {
+      const userId = req.user.id;
+      const user = await User.findById(userId);
+  
+      if (!user) {
+        return res.status(404).json({ success: false, error: 'User not found' });
+      }
+  
+      const trans_id = new ObjectId().toString();
+      const { course, user: userDetails } = req.body;
+  
+      const data = {
+        total_amount: 100,
+        currency: 'BDT',
+        tran_id: trans_id,
+        success_url: `http://localhost:4003/payment/success/${trans_id}`,
+        fail_url: 'http://localhost:3030/fail',
+        cancel_url: 'http://localhost:3030/cancel',
+        ipn_url: 'http://localhost:3030/ipn',
+        shipping_method: 'Courier',
+        product_name: course,
+        product_category: 'Education',
+        product_profile: 'general',
+        cus_name: userDetails.name,
+        cus_email: userDetails.email,
+        cus_add1: 'Dhaka',
+        cus_add2: 'Dhaka',
+        cus_city: 'Dhaka',
+        cus_state: 'Dhaka',
+        cus_postcode: '1000',
+        cus_country: 'Bangladesh',
+        cus_phone: '01711111111',
+        cus_fax: '01711111111',
+        ship_name: userDetails.name,
+        ship_add1: 'Dhaka',
+        ship_add2: 'Dhaka',
+        ship_city: 'Dhaka',
+        ship_state: 'Dhaka',
+        ship_postcode: 1000,
+        ship_country: 'Bangladesh',
+      };
+  
+      const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
+      sslcz.init(data).then(apiResponse => {
+        let GatewayPageURL = apiResponse.GatewayPageURL;
+        res.send({
+          url: GatewayPageURL,
+          trans_id,
+          paymentData: req.body
+        });
+        console.log('Redirecting to: ', GatewayPageURL);
+      });
+    } catch (error) {
+      console.error('Error creating order:', error);
+      res.status(500).json({ success: false, error: 'Internal server error' });
     }
-    console.log(user);
-
-    // Generate a unique transaction ID
-    const trans_id = new ObjectId().toString();
-
-    const data = {
-      total_amount: 100,
-      currency: 'BDT',
-      tran_id: trans_id,
-      success_url: `http://localhost:4003/payment/success/${trans_id}`,
-      fail_url: 'http://localhost:3030/fail',
-      cancel_url: 'http://localhost:3030/cancel',
-      ipn_url: 'http://localhost:3030/ipn',
-      shipping_method: 'Courier',
-      product_name: 'Computer.',
-      product_category: 'Electronic',
-      product_profile: 'general',
-      cus_name: user.name,
-      cus_email: user.email,
-      cus_add1: 'Dhaka',
-      cus_add2: 'Dhaka',
-      cus_city: 'Dhaka',
-      cus_state: 'Dhaka',
-      cus_postcode: '1000',
-      cus_country: 'Bangladesh',
-      cus_phone: '01711111111',
-      cus_fax: '01711111111',
-      ship_name: user.name,
-      ship_add1: 'Dhaka',
-      ship_add2: 'Dhaka',
-      ship_city: 'Dhaka',
-      ship_state: 'Dhaka',
-      ship_postcode: 1000,
-      ship_country: 'Bangladesh',
-    };
-
-    const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
-    sslcz.init(data).then(apiResponse => {
-      let GatewayPageURL = apiResponse.GatewayPageURL;
-      res.send({ url: GatewayPageURL });
-      console.log('Redirecting to: ', GatewayPageURL);
-    });
-  } catch (error) {
-    console.error('Error creating order:', error);
-    res.status(500).json({ success: false, error: 'Internal server error' });
-  }
-});
+  });
 
 app.post("/payment/success/:tran_id", async (req, res) => {
-  console.log(req.params.tran_id);
+  try {
+    const transactionId = req.params.tran_id;
+    const paymentData = req.body.paymentData; // Read paymentData from request body
+    console.log("Transaction ID:", transactionId);
+    console.log("Payment Data:", paymentData);
+
+    const { user: userDetails } = paymentData;
+
+    const transactionDetails = {
+      cus_email: userDetails.email,
+      cus_name: userDetails.name
+    };
+
+    console.log("Transaction details:", transactionDetails);
+
+    const registeredUser = new RegisteredUser({
+      name: userDetails.name,
+      email: userDetails.email,
+    });
+
+    await registeredUser.save();
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error("Error handling payment success:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
 });
 
-app.listen(port, (error) => {
-  if (!error) {
-    console.log("Server running on port:" + port);
-  } else {
-    console.log("Error :" + error);
-  }
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
