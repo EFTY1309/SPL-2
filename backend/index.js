@@ -79,6 +79,18 @@ const registeredUserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  category: {
+    type: String,
+    required: true
+  },
+  courses: {
+    type: [String],
+    required: true
+  },
+  tran_id: {
+    type: String,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -202,88 +214,89 @@ app.get('/user-courses', authMiddleware, async (req, res) => {
   }
 });
 
+// Temporary storage for transactions
+let transactions = {};
+
 // Apply authMiddleware to this route
 app.post('/order', authMiddleware, async (req, res) => {
-    try {
-      const userId = req.user.id;
-      const user = await User.findById(userId);
-  
-      if (!user) {
-        return res.status(404).json({ success: false, error: 'User not found' });
-      }
-  
-      const trans_id = new ObjectId().toString();
-      const { course, user: userDetails } = req.body;
-  
-      const data = {
-        total_amount: 100,
-        currency: 'BDT',
-        tran_id: trans_id,
-        success_url: `http://localhost:4003/payment/success/${trans_id}`,
-        fail_url: 'http://localhost:3030/fail',
-        cancel_url: 'http://localhost:3030/cancel',
-        ipn_url: 'http://localhost:3030/ipn',
-        shipping_method: 'Courier',
-        product_name: course,
-        product_category: 'Education',
-        product_profile: 'general',
-        cus_name: userDetails.name,
-        cus_email: userDetails.email,
-        cus_add1: 'Dhaka',
-        cus_add2: 'Dhaka',
-        cus_city: 'Dhaka',
-        cus_state: 'Dhaka',
-        cus_postcode: '1000',
-        cus_country: 'Bangladesh',
-        cus_phone: '01711111111',
-        cus_fax: '01711111111',
-        ship_name: userDetails.name,
-        ship_add1: 'Dhaka',
-        ship_add2: 'Dhaka',
-        ship_city: 'Dhaka',
-        ship_state: 'Dhaka',
-        ship_postcode: 1000,
-        ship_country: 'Bangladesh',
-      };
-  
-      const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
-      sslcz.init(data).then(apiResponse => {
-        let GatewayPageURL = apiResponse.GatewayPageURL;
-        res.send({
-          url: GatewayPageURL,
-          trans_id,
-          paymentData: req.body
-        });
-        console.log('Redirecting to: ', GatewayPageURL);
-      });
-    } catch (error) {
-      console.error('Error creating order:', error);
-      res.status(500).json({ success: false, error: 'Internal server error' });
-    }
-  });
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId);
 
-app.post("/payment/success/:tran_id", async (req, res) => {
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
+
+    const trans_id = new ObjectId().toString();
+    const { course, user: userDetails } = req.body;
+
+    const data = {
+      total_amount: 100,
+      currency: 'BDT',
+      tran_id: trans_id,
+      success_url: `http://localhost:4003/payment/success/${trans_id}`,
+      fail_url: 'http://localhost:4003/payment/fail',
+      cancel_url: 'http://localhost:4003/payment/cancel',
+      ipn_url: 'http://localhost:4003/payment/ipn',
+      shipping_method: 'Courier',
+      product_name: 'Computer.',
+      product_category: 'Electronic',
+      product_profile: 'general',
+      cus_name: userDetails.name,
+      cus_email: userDetails.email,
+      cus_add1: 'Dhaka',
+      cus_add2: 'Dhaka',
+      cus_city: 'Dhaka',
+      cus_state: 'Dhaka',
+      cus_postcode: '1000',
+      cus_country: 'Bangladesh',
+      cus_phone: '01711111111',
+      cus_fax: '01711111111',
+      ship_name: userDetails.name,
+      ship_add1: 'Dhaka',
+      ship_add2: 'Dhaka',
+      ship_city: 'Dhaka',
+      ship_state: 'Dhaka',
+      ship_postcode: '1000',
+      ship_country: 'Bangladesh',
+    };
+
+    const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
+    const apiResponse = await sslcz.init(data);
+
+    transactions[trans_id] = { course, userDetails };
+
+    return res.status(200).json({ success: true, url: apiResponse.GatewayPageURL });
+  } catch (error) {
+    console.error('Error creating order:', error);
+    return res.status(500).json({ success: false, error: 'Internal server error' });
+  }
+});
+
+app.post('/payment/success/:tran_id', async (req, res) => {
   try {
     const transactionId = req.params.tran_id;
-    const paymentData = req.body.paymentData; // Read paymentData from request body
+    const paymentData = transactions[transactionId];
     console.log("Transaction ID:", transactionId);
     console.log("Payment Data:", paymentData);
 
-    const { user: userDetails } = paymentData;
+    if (!paymentData) {
+      return res.status(400).json({ success: false, error: "Invalid transaction ID or payment data not found" });
+    }
 
-    const transactionDetails = {
-      cus_email: userDetails.email,
-      cus_name: userDetails.name
-    };
-
-    console.log("Transaction details:", transactionDetails);
+    const { userDetails, course } = paymentData;
 
     const registeredUser = new RegisteredUser({
       name: userDetails.name,
       email: userDetails.email,
+      category: userDetails.category,
+      courses: userDetails.courses,
+      tran_id: transactionId
     });
 
     await registeredUser.save();
+
+    delete transactions[transactionId];
 
     res.status(200).json({ success: true });
   } catch (error) {
@@ -293,5 +306,5 @@ app.post("/payment/success/:tran_id", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });
