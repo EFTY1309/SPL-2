@@ -11,6 +11,18 @@ const Sidebar = () => {
          <p>Add Event</p>
         </div>
       </Link>
+
+      <Link to={"/registeredUsers"} style={{ textDecoration: "none" }}>
+        <div className="sidebar-item">
+         <p>Registered User</p>
+        </div>
+      </Link>
+
+      <Link to={"/addCourse"} style={{ textDecoration: "none" }}>
+        <div className="sidebar-item">
+         <p>Add Course</p>
+        </div>
+      </Link>
     </div>
   );
 };

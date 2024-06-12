@@ -1,0 +1,33 @@
+.registered-user {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .user-table th, .user-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .user-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .user-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .user-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
