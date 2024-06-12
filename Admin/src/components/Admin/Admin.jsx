@@ -4,6 +4,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import AddEvent from '../addEvent/AddEvent';
 import AddCourse from '../AddCourse/AddCourse';
 import RegisteredUser from '../RegisteredUser/RegisteredUser';
+import AvailableCourses from '../AvailableCourses/AvailableCourses'; // Import the component
 import './Admin.css'; // Ensure the CSS file is imported
 
 const Admin = () => {
@@ -17,6 +18,7 @@ const Admin = () => {
             <Route path="/addEvent" element={<AddEvent />} />
             <Route path="/registeredUsers" element={<RegisteredUser />} />
             <Route path="/addCourse" element={<AddCourse />} />
+            <Route path="/available-courses" element={<AvailableCourses />} /> {/* Add the route */}
           </Routes>
         </div>
       </Router>

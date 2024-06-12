@@ -1,0 +1,44 @@
+.courses-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .courses-table th,
+  .courses-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .courses-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .course-image {
+    max-width: 100px;
+    height: auto;
+  }
+  
+  button {
+    margin-left: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .remove-button {
+    background-color: #dc3545;
+    margin-left: 0;
+  }
+  
+  .remove-button:hover {
+    background-color: #c82333;
+  }
+  

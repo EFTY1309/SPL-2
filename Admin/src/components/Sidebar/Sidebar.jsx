@@ -23,6 +23,11 @@ const Sidebar = () => {
          <p>Add Course</p>
         </div>
       </Link>
+      <Link to={"/available-courses"} style={{ textDecoration: "none" }}>
+        <div className="sidebar-item">
+         <p> Available Courses</p>
+        </div>
+      </Link>
     </div>
   );
 };
