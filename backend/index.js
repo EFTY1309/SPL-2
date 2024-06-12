@@ -118,6 +118,40 @@ app.post('/addcourse', async (req, res) => {
   }
 });
 
+app.get('/courses', async (req, res) => {
+    try {
+      const courses = await Course.find();
+      res.json({ success: true, courses });
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+      res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+  });
+
+  app.delete('/courses', async (req, res) => {
+    try {
+      const courseName = req.body.name;
+      if (!courseName) {
+        return res.status(400).json({ success: false, error: 'Course name is required' });
+      }
+  
+      const course = await Course.findOneAndDelete({ name: courseName });
+      if (!course) {
+        return res.status(404).json({ success: false, error: 'Course not found' });
+      }
+  
+      res.json({ success: true, message: 'Course removed successfully' });
+    } catch (error) {
+      console.error('Error removing course:', error);
+      res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+  });
+  
+  
+  
+  
+  
+
 const authMiddleware = (req, res, next) => {
   const token = req.header('x-auth-token');
   console.log('Received token:', token); // Debug line
