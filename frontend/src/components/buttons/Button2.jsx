@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Button2.css";
 
-const Button2 = ({ text, to, onClick, className }) => {
+const Button2 = ({ text, to, className }) => {
   return (
     <div>
-      <Link to={to} onClick={onClick} className={`btn-2 ${className || ''}`}>{text}</Link>
+      <Link to={to} className={`btn-2 ${className || ''}`}>{text}</Link>
     </div>
   );
 };

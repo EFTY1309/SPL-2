@@ -17,7 +17,7 @@
   height: 100%;
   background-color: #e1f5f8;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .right-boxes {
@@ -34,7 +34,7 @@
   width: 250px;
   height: 250px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .top-right-box {
@@ -86,7 +86,7 @@
   margin-bottom: 35px;
   background-color: #e1f5f8;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .hero-section-2 h1,

@@ -22,7 +22,6 @@
     text-align: center;
     margin-bottom: 40px;
     color: #080034;
-    font-size: 24px;
   }
   
   .payment-section {
@@ -43,7 +42,7 @@
   .payment-section li {
     background: #B4E8EF;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     padding: 20px;
     margin-bottom: 20px;
     display: flex;

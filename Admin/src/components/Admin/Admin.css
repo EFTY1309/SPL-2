@@ -1,0 +1,35 @@
+.admin {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    height: 100%;
+    background: white;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+@media (max-width: 800px) {
+    .admin {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        flex: none;
+        width: 100%;
+        height: auto;
+    }
+
+    .content {
+        width: 100%;
+    }
+}

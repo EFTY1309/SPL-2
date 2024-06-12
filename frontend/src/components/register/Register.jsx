@@ -1,51 +1,85 @@
 import React, { useState } from 'react';
-import './Register.css';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
-import Button2 from '../buttons/Button2';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import "./Register.css";
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    number: '',
-    category: '',
-    gender: '',
-    dob: '',
-    registrationNumber: '',
-    password: '',
-    confirmPassword: '', // New state for confirm password
+  const [swimmerData, setSwimmerData] = useState({
+    name: "",
+    email: "",
+    number: "",
+    category: "",
+    gender: "",
+    dob: "",
+    registrationNumber: "",
+    password: "",
+    confirmPassword: "",
+    courses: []
   });
 
-  const navigate = useNavigate(); // useNavigate instead of useHistory
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setSwimmerData({ ...swimmerData, [name]: value });
   };
 
-  const togglePasswordVisibility = () => {
-    setFormData({ ...formData, showPassword: !formData.showPassword });
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setFormData({ ...formData, showConfirmPassword: !formData.showConfirmPassword });
-  };
-
-  const handleSubmit = async () => {
-    if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match. Please re-enter.');
-      setFormData({ ...formData, password: '', confirmPassword: '' });
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    let updatedCourses = [...swimmerData.courses];
+    if (checked) {
+      updatedCourses.push(value);
     } else {
-      try {
-        const response = await axios.post('/api/auth/register', formData);
-        console.log('Form submitted:', response.data);
-        // Handle successful registration (e.g., redirect to login page)
-        navigate('/signin');
-      } catch (error) {
-        console.error('Error registering:', error);
-        alert('Registration failed. Please try again.');
+      updatedCourses = updatedCourses.filter((course) => course !== value);
+    }
+    setSwimmerData({ ...swimmerData, courses: updatedCourses });
+  };
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const signup = async () => {
+    const { password, confirmPassword, email } = swimmerData;
+
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters long.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    try {
+      console.log('Sending swimmer data:', swimmerData); // Log data being sent
+
+      const response = await fetch('http://localhost:4003/register', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(swimmerData),
+      });
+
+      const responseData = await response.json();
+      console.log('Response data:', responseData); // Log response data
+
+      if (response.ok) {
+        navigate('/signin', { state: { user: responseData.user } });
+      } else {
+        alert(responseData.errors);
       }
+    } catch (error) {
+      console.error('Error during registration:', error);
+      alert('An error occurred. Please try again later.');
     }
   };
 
@@ -54,107 +88,49 @@ const Register = () => {
       <div className="signup-container">
         <h1>Swimmer Registration Form</h1>
         <div className="signup-fields">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            value={formData.name}
-            id="name"
-            name="name"
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            value={formData.email}
-            id="email"
-            name="email"
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="number">Mobile Number</label>
-          <input
-            type="text"
-            value={formData.number}
-            id="number"
-            name="number"
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="category">Select a Swimmer Category:</label>
-          <select
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Category</option>
-            <option value="Dhaka University Student">Dhaka University Student</option>
-            <option value="DU Teacher/Officer/Employee/Their Family Member">DU Teacher/Officer/Employee/Their Family Member</option>
-            <option value="BUET/DMC Student">BUET/DMC Student</option>
-            <option value="Associate Member">Associate Member</option>
-            <option value="General Swimmer">General Swimmer</option>
+          <label htmlFor="swimmerName">Name</label>
+          <input type="text" value={swimmerData.name} id="swimmerName" name="name" onChange={handleInputChange} required />
+          <label htmlFor="swimmerEmail">Email</label>
+          <input type="email" value={swimmerData.email} id="swimmerEmail" name="email" onChange={handleInputChange} required />
+          <label htmlFor="swimmerNumber">Number</label>
+          <input type="text" value={swimmerData.number} id="swimmerNumber" name="number" onChange={handleInputChange} required />
+          <label htmlFor="swimmerCategory">Select a Swimmer Category:</label>
+          <select id="swimmerCategory" name="category" value={swimmerData.category} onChange={handleInputChange} required>
+            <option className='option' value="">Select Category</option>
+            <option className='option' value="Dhaka University Student">Dhaka University Student</option>
+            <option className='option' value="DU Teacher/Officer/Employee/Their Family Member">DU Teacher/Officer/Employee/Their Family Member</option>
+            <option className='option' value="BUET/DMC Student">BUET/DMC Student</option>
+            <option className='option' value="Associate Member">Associate Member</option>
+            <option className='option' value="General Swimmer">General Swimmer</option>
           </select>
-          <label htmlFor="dob">Date of Birth</label>
-          <input
-            type="date"
-            id="dob"
-            name="dob"
-            value={formData.dob}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="registrationNumber">Registration Number for DU Students</label>
-          <input
-            type="text"
-            id="registrationNumber"
-            name="registrationNumber"
-            value={formData.registrationNumber}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="password">Password</label>
-          <div className="password-input">
-            <input
-              type={formData.showPassword ? 'text' : 'password'}
-              value={formData.password}
-              id="password"
-              name="password"
-              onChange={handleChange}
-              required
-            />
-            <button
-              type="button"
-              className="password-toggle"
-              onClick={togglePasswordVisibility}
-            >
-              {formData.showPassword ? <FaEye /> : <FaEyeSlash />}
-            </button>
-          </div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <div className="password-input">
-            <input
-              type={formData.showConfirmPassword ? 'text' : 'password'}
-              value={formData.confirmPassword}
-              id="confirmPassword"
-              name="confirmPassword"
-              onChange={handleChange}
-              required
-            />
-            <button
-              type="button"
-              className="confirm-password-toggle"
-              onClick={toggleConfirmPasswordVisibility}
-            >
-              {formData.showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
-            </button>
-          </div>
+          <label htmlFor="swimmerDOB">Date of Birth</label>
+          <input type="date" id="swimmerDOB" name="dob" value={swimmerData.dob} onChange={handleInputChange} required/>
+          <label htmlFor="swimmerRegistrationNumber">Registration Number for DU Students</label>
+          <input type="text" id="swimmerRegistrationNumber" name="registrationNumber" value={swimmerData.registrationNumber} onChange={handleInputChange} required />
+          <label htmlFor="swimmerPassword">Password</label>
+          <input type="password" value={swimmerData.password} id="swimmerPassword" name="password" onChange={handleInputChange} required />
+          <label htmlFor="swimmerConfirmPassword">Confirm Password</label>
+          <input type="password" value={swimmerData.confirmPassword} id="swimmerConfirmPassword" name="confirmPassword" onChange={handleInputChange} required />
+          <fieldset>
+            <legend className='select-course'>Select Courses:</legend>
+            <label>
+              <input type="checkbox" value="Butterfly" onChange={handleCheckboxChange} />
+              Butterfly
+            </label><br/>
+            <label>
+              <input type="checkbox" value="Backstroke" onChange={handleCheckboxChange} />
+              Backstroke
+            </label><br/>
+            <label>
+              <input type="checkbox" value="Freestyle" onChange={handleCheckboxChange} />
+              Freestyle
+            </label><br/>
+          </fieldset>
         </div>
-        <Button2 text="Submit" onClick={handleSubmit} className="signup-btn" />
+        <button className='signup-btn' onClick={signup}>Submit</button>
         <div className="login-link">
           <span>Already have an account? </span>
-          <Link to="/signin">Sign In</Link>
+          <a href="/signin">Sign In</a>
         </div>
       </div>
     </div>

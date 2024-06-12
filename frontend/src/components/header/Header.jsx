@@ -28,6 +28,7 @@ const Header = () => {
           <li><Link to="/courses" onClick={toggleMenu}>Courses</Link></li>
           <li><Link to="/schedule" onClick={toggleMenu}>Schedule</Link></li>
           <li><Link to="/contact-us" onClick={toggleMenu}>Contact</Link></li>
+          <li><Link to="/events" onClick={toggleMenu}>Events</Link></li>
         </ul>
       </nav>
       <div className="menu-toggle" onClick={toggleMenu}>

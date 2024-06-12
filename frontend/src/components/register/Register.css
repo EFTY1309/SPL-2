@@ -1,101 +1,100 @@
 .signup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    min-height: 170vh;
-  }
-  
-  .signup-container {
-    width: 80%;
-    max-width: 500px;
-    padding: 40px;
-    background: #e1f5f8;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    text-align: center;
-  }
-  
-  .signup-container h1 {
-    margin-bottom: 20px;
-    color: #080034;
-    font-size: 24px;
-  }
-  
-  .signup-fields {
-    margin-top: 30px;
-    margin-bottom: 40px;
-  }
-  
-  .signup-fields label {
-    margin-top: 20px;
-  }
-  
-  .signup-fields label,
-  .signup-fields input,
-  .signup-fields select,
-  .signup-fields select option {
-    display: block;
-    width: 100%;
-    color: #080034;
-    text-align: left;
-  }
-  
-  .signup-fields input,
-  .signup-fields select {
-    height: 40px;
-    width: calc(100% - 10px);
-    border: 1px solid #c9c9c9;
-    outline: none;
-    font-size: 16px;
-    border-radius: 5px;
-    padding-left: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-  
-  .password-input {
-    position: relative;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 80px;
+}
 
-  .password-toggle, .confirm-password-toggle {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    height: calc(100% - 3px);
-    border-radius: 0 4px 4px 0;
-    transform: translateY(-50%);
-    background: #c8c8c8;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-  
-  .password-toggle svg, .confirm-password-toggle svg {
-    color: #000000;
-    height: calc(100% - 15px);
-    width: auto;
-  }
-  
-  .login-link {
-    margin-top: 20px;
-    font-size: 16px;
-  }
-  
-  .login-link span {
-    color: #5c5c5c;
-  }
-  
-  .login-link a {
-    color: #080034;
-    text-decoration: none;
-  }
-  
-  .login-link a:hover {
-    text-decoration: underline;
-  }
-  
-  .signup-btn {
-    font-size: 18px;
-  }
-  
+.signup-container {
+  width: 80%;
+  max-width: 500px;
+  padding: 40px;
+  background: #e1f5f8;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.signup-container h1 {
+  margin-bottom: 20px;
+  color: #080034;
+  font-size: 24px;
+}
+
+.signup-fields {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.signup-fields label {
+  margin-top: 20px;
+}
+
+.signup-fields label,
+.signup-fields input,
+.signup-fields select,
+.signup-fields select option {
+  display: block;
+  width: 100%;
+  color: #080034;
+  text-align: left;
+}
+
+.signup-fields input,
+.signup-fields select {
+  height: 40px;
+  width: calc(100% - 10px);
+  border: 1px solid #c9c9c9;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+legend.select-course {
+  text-align: left;
+  color: #080034;
+  margin-bottom: 10px;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 10px;
+  background: #080034;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.signup-btn:hover {
+  background: #06002a;
+}
+
+.login-link {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.login-link span {
+  color: #5c5c5c;
+}
+
+.login-link a {
+  color: #080034;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

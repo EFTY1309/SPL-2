@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
-  padding: 20px;
+  height: 110vh;
+ 
 }
 
 .profile-container {
@@ -13,6 +13,7 @@
   background: #e1f5f8;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
 .profile h1 {
@@ -22,8 +23,7 @@
 }
 
 .profile-info {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .profile-item {
@@ -37,22 +37,23 @@
   color: #080034;
 }
 
+.text {
+  width: calc(100% - 30px);
+}
+
 .label {
   font-weight: bold;
   color: #080034;
 }
 
 .value {
-  color: #555;
+  color: #080034;
 }
 
-@media (max-width: 768px) {
-  .profile-container {
-    width: 90%;
-    padding: 20px;
-  }
-
-  .profile h1 {
-    font-size: 20px;
-  }
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 20px;
 }

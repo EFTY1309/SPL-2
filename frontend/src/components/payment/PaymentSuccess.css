@@ -1,26 +1,23 @@
-.success-page {
+/* Ensure the body and html take up full height and have a black background */
+
+  
+  /* Style for the payment success container */
+  .payment-success-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-height: 80vh;
-  }
-  
-  .success-container {
-    background-color: #e1f5f8;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    padding: 40px;
+    
+    height: 100vh; /* Make sure it takes up the full viewport height */
     text-align: center;
-    max-width: 600px;
   }
   
-  .success-container h1 {
-    color: #080034;
-    font-size: 24px;
-    margin-bottom: 20px;
+  .payment-success-container h1 {
+    color: white;
+    font-size: 2em; /* Increase the font size for the header */
   }
   
-  .success-container p {
-    color: #555;
-    margin-bottom: 10px;
+  .payment-success-container p {
+    font-size: 18px;
+    color: white; /* Ensure the paragraph text is white */
   }
+  

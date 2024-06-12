@@ -1,28 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import './Events.css';
 
 const Events = () => {
-  const events = [
-    {
-      title: 'Summer Pool Party',
-      date: 'June 15, 2024',
-      description: 'Join us for a fun summer pool party with games, music, and refreshments.',
-      image: '/path/to/event1.jpg'
-    },
-    {
-      title: 'Swimming Championship',
-      date: 'July 20, 2024',
-      description: 'Come and watch the exciting swimming championship with participants from various regions.',
-      image: '/path/to/event2.jpg'
-    },
-    {
-      title: 'Family Fun Day',
-      date: 'August 5, 2024',
-      description: 'A day full of fun activities for the whole family at the pool.',
-      image: '/path/to/event3.jpg'
-    }
-  ];
+  const navigate = useNavigate();
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch('http://localhost:4003/events');
+        const data = await response.json();
+        if (data.success) {
+          setEvents(data.events);
+        }
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   const settings = {
     dots: true,
@@ -50,13 +49,17 @@ const Events = () => {
     ]
   };
 
+  const handleEventClick = (id) => {
+    navigate(`/event/${id}`);
+  };
+
   return (
     <div className="events">
       <div className="events-container">
         <h1>Upcoming Events</h1>
         <Slider {...settings}>
           {events.map((event, index) => (
-            <div key={index} className="event-card">
+            <div key={index} className="event-card" onClick={() => handleEventClick(event._id)}>
               <img src={event.image} alt={event.title} />
               <div className="event-details">
                 <h2>{event.title}</h2>

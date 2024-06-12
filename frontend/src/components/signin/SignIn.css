@@ -108,6 +108,14 @@
   }
 
   .signin-btn {
-    font-size: 18px;
+    width: 40%; /* Adjust width to fit the container */
+    height: 50px; /* Adjust height as needed */
+    font-size: 18px; /* Adjust text size as needed */
+    margin-top: 10px; /* Add spacing at the top */
+    background-color: #080034;
+    color: white;
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Add border radius */
+    cursor: pointer; /* Add pointer cursor */
   }
   
