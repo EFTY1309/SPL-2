@@ -1,13 +1,13 @@
+// src/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import './App.css'; 
 import App from "./App.jsx";
 import "@fortawesome/fontawesome-free/css/all.css";
-/* slick-carousel styles */
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
+import { AuthProvider } from "./context/AuthContext";
 import Courses from "./pages/CoursesPage.jsx";
 import SignIn from "./pages/SignInPage.jsx";
 import Register from "./pages/RegisterPage.jsx";
@@ -22,7 +22,6 @@ import SwimmingLessons from "./pages/SwimmingLessonsPage.jsx";
 import Events from "./pages/EventsPage.jsx";
 import Payment from "./pages/PaymentPage.jsx";
 
-
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -30,6 +29,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import PaymentSuccess from "./components/payment/PaymentSuccess.jsx";
+import PaymentFail from "./components/payment/PaymentFail.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -50,15 +51,15 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard />,
+    element: <PrivateRoute element={<Dashboard />} />,
   },
   {
     path: "profile",
-    element: <Profile />,
+    element: <PrivateRoute element={<Profile />} />,
   },
   {
     path: "update-profile",
-    element: <UpdateProfile />,
+    element: <PrivateRoute element={<UpdateProfile />} />,
   },
   {
     path: "contact-us",
@@ -70,11 +71,11 @@ const router = createBrowserRouter([
   },
   {
     path: "my-schedule",
-    element: <MySchedule />,
+    element: <PrivateRoute element={<MySchedule />} />,
   },
   {
     path: "my-courses",
-    element: <MyCourses />,
+    element: <PrivateRoute element={<MyCourses />} />,
   },
   {
     path: "swimming-lessons",
@@ -92,10 +93,16 @@ const router = createBrowserRouter([
     path: "payment-success",
     element: <PaymentSuccess />,
   },
+  {
+    path: "payment-fail",
+    element: <PaymentFail />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
-)
+);

@@ -5,31 +5,10 @@ import Button2 from '../buttons/Button2';
 const ContactUs = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+ 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:5000/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        alert('Message sent successfully');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        alert('Failed to send message');
-      }
-    } catch (error) {
-      alert('An error occurred while sending the message');
-    }
-  };
-
-  return (
+ 
+   return (
     <div className="contact-us">
       <div className="contact-us-container">
         <h1>Contact Us</h1>
@@ -74,46 +53,6 @@ const ContactUs = () => {
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
-        </div>
-
-        <div className="contact-form">
-          <h1>Send us a Message</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Your Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                value={formData.name} 
-                onChange={handleChange} 
-                required 
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Your Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                value={formData.email} 
-                onChange={handleChange} 
-                required 
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="message">Your Message</label>
-              <textarea 
-                id="message" 
-                name="message" 
-                rows="5" 
-                value={formData.message} 
-                onChange={handleChange} 
-                required 
-              ></textarea>
-            </div>
-            <Button2 text="Send Message" to="" className="contact-us-btn"/>
-          </form>
         </div>
       </div>
     </div>

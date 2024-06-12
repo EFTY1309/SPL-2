@@ -7,6 +7,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
+const multer = require("multer");
+const path = require("path");
 
 const app = express();
 app.use(express.json());
@@ -98,8 +100,69 @@ const registeredUserSchema = new mongoose.Schema({
   },
 });
 
+const eventSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  image: {
+    type: String,
+    required: true
+  },
+  created_at: {
+    type: Date,
+    default: Date.now
+  }
+});
+
 const User = mongoose.model('User', userSchema);
 const RegisteredUser = mongoose.model('RegisteredUser', registeredUserSchema);
+const Event = mongoose.model("Event", eventSchema);
+
+const storage = multer.diskStorage({
+    destination: './upload/images',
+    filename: (req, file, cb) => {
+      cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+    }
+  });
+  
+  const upload = multer({ storage: storage });
+  
+  app.use('/images', express.static('upload/images'));
+  
+  app.post("/upload", upload.single('image'), (req, res) => {
+    res.json({
+      success: 1,
+      image_url: `http://localhost:${port}/images/${req.file.filename}`
+    });
+  });
+  
+  app.post('/addevent', async (req, res) => {
+    const { name, date, description, image } = req.body;
+  
+    const event = new Event({
+      name,
+      date,
+      description,
+      image
+    });
+  
+    try {
+      await event.save();
+      res.json({ success: true, event });
+    } catch (error) {
+      console.error('Error adding event:', error);
+      res.status(500).json({ success: false, errors: 'Failed to add event' });
+    }
+  });
 
 const authMiddleware = (req, res, next) => {
   const token = req.header('x-auth-token');

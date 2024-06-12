@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './SignIn.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import Button2 from '../buttons/Button2';
 
 const SignIn = () => {
@@ -12,6 +13,7 @@ const SignIn = () => {
   });
 
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,7 +23,7 @@ const SignIn = () => {
     setFormData({ ...formData, showPassword: !formData.showPassword });
   };
 
-  const login = async () => {
+  const handleLogin = async () => {
     console.log('Login function executed', formData);
   
     let responseData;
@@ -38,12 +40,12 @@ const SignIn = () => {
   
     if (responseData.success) {
       localStorage.setItem('auth-token', responseData.token);
+      login();
       navigate('/dashboard');
     } else {
       alert(responseData.errors);
     }
   };
-  
 
   return (
     <div className="login">
@@ -85,7 +87,7 @@ const SignIn = () => {
           <Link to="/forgot-password">Forgot your password?</Link>
         </div>
 
-        <button onClick={login} className='signin-btn'>Sign In</button>
+        <button onClick={handleLogin} className='signin-btn'>Sign In</button>
 
         <div className="signup-link">
           <span>Don't have an account? </span>
