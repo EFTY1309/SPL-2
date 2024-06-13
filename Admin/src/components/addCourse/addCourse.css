@@ -1,0 +1,39 @@
+.add-course {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+  }
+  
+  .course-itemfield {
+    margin-bottom: 15px;
+  }
+  
+  .course-itemfield p {
+    margin-bottom: 5px;
+  }
+  
+  .course-itemfield input,
+  .course-itemfield textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .course-thumbnail-img {
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .add-course-btn {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .add-course-btn:hover {
+    background-color: #0056b3;
+  }
+  

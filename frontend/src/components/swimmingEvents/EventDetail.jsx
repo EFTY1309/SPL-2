@@ -10,7 +10,7 @@ const EventDetail = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await fetch(`http://localhost:5173/events/${eventId}`);
+        const response = await fetch(`http://localhost:3001/events/${eventId}`);
         const data = await response.json();
         if (data.success) {
           setEvent(data.event);
